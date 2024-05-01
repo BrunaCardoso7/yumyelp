@@ -1,39 +1,41 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import Cardapio from './src/Screens/Cardapio';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View } from 'react-native-reanimated/lib/typescript/Animated';
+import { Dimensions } from 'react-native';
 
-function Feed() {
+const screenWidth = Dimensions.get('window').width;
+
+// const Tab = createBottomTabNavigator();
+
+// function MyDrawer() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Cardapio" component={Cardapio} />
+//       {/* <Tab.Screen name="Article" component={Article} /> */}
+//     </Tab.Navigator>
+//   );
+// }
+function Header ( ) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed Screen</Text>
+    <View 
+      style={{
+        backgroundColor: '#681A1A',
+        width: screenWidth,
+        height: 100,
+      }}
+    >
+      <Text>tedst</Text>
     </View>
-  );
-}
-
-function Article() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Article Screen</Text>
-    </View>
-  );
-}
-
-const Drawer = createDrawerNavigator();
-
-function MyDrawer() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Feed" component={Feed} />
-      <Drawer.Screen name="Article" component={Article} />
-    </Drawer.Navigator>
-  );
+  )
 }
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyDrawer />
-    </NavigationContainer>
+    <View>
+      <Header/>
+      <Cardapio />
+    </View>
   );
 }
