@@ -1,35 +1,26 @@
-import {View, Image,StyleSheet, Text} from 'react-native'
-import { useCallback, useEffect, useState } from 'react'; 
+import {View, Image,StyleSheet, Text, ScrollView, TextInput} from 'react-native'
+import { useCallback, useEffect, useState} from 'react'; 
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { Dimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 
 const screenWidth = Dimensions.get('window').width;
 SplashScreen.preventAutoHideAsync();
 
 function Cardapio () {
     const [inputValue, setInputValue] = useState('')
-    const [fontsLoaded, fontError] = useFonts({
-        'Montserrat-Regular': require('../../../assets/fonts/Montserrat-Regular.ttf'), 
-        'InriaSerif-Regular': require('../../../assets/fonts/InriaSerif-Regular.ttf'),
-        'InriaSerif-Bold': require('../../../assets/fonts/InriaSerif-Bold.ttf'),
-      });
-    
-      const onLayoutRootView = useCallback(async () => {
-        if (fontsLoaded || fontError) {
-          await SplashScreen.hideAsync();
-        }
-      }, [fontsLoaded, fontError]);
-    
-      useEffect(() => {
-        onLayoutRootView(); 
-      }, [onLayoutRootView]);
-    
-      if (!fontsLoaded && !fontError) {
-        return null;
-      }
+    const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
+
+    useEffect(() => {
+      onLayoutRootView(); 
+    }, [onLayoutRootView]);
+  
+    if (!fontsLoaded && !fontError) {
+      return null;
+    }
+
     return (
         <ScrollView onLayout={onLayoutRootView} >
             <Image style={styles.imageStyle} source={require('../../../assets/Rectangle 6.png')}/>
@@ -104,6 +95,23 @@ function Cardapio () {
                   onChangeText={setInputValue}
                 />
               </View>
+              <View style={styles.bubbleComent}>
+              <View style={styles.conteinerStar}>
+                  <AntDesign name="staro" size={20} color="yellow" />
+                  <AntDesign name="staro" size={20} color="yellow" />
+                  <AntDesign name="staro" size={20} color="yellow" />
+                  <AntDesign name="staro" size={20} color="yellow" />
+                  <AntDesign name="staro" size={20} color="yellow" />
+                </View>
+                <View style={styles.profileImage}>
+                  <Text>oi</Text>
+                </View>
+                <View style={styles.comenter}>
+                  <Text>
+                    não sei se gostei da comida e achei um fio de cabelo na minha comida
+                  </Text>
+                </View>
+              </View>
             </View>
         </ScrollView>
     )
@@ -174,6 +182,23 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       padding: 8,
       borderRadius: 6,
+    },
+    bubbleComent: {
+      backgroundColor: "#D9D9D9",
+      width: '100%',
+      height: 'fit-content',
+      gap: 8,
+      borderRadius: 14,
+      padding: 10,
+    },
+    profileImage: {
+      width: 40,
+      height: 40,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 100,
+      backgroundColor: '#767676',
     }
 })
 
