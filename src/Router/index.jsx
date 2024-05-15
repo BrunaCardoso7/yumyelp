@@ -2,20 +2,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import Cardapio from "../Screens/Cardapio"
 import { Ionicons } from "@expo/vector-icons"
 import Inicio from "../Screens/Inicio"
-import { UseFontsCostumize } from "../hooks/useFontsCustomize"
-import { useEffect } from "react"
+import Register from "../Screens/Register"
 
 const Tab = createBottomTabNavigator()
 
 function TabNagation () {
-  const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
-  useEffect(() => {
-      onLayoutRootView(); 
-  }, [onLayoutRootView]);
-
-  if (!fontsLoaded && !fontError) {
-  return null;
-  }
+ 
      return (
         <Tab.Navigator
           screenOptions={({route}) => ({
