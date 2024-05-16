@@ -6,6 +6,7 @@ export const UseFontsCostumize = () => {
         'InriaSerif-Regular': require('../../assets/fonts/InriaSerif-Regular.ttf'),
         'InriaSerif-Bold': require('../../assets/fonts/InriaSerif-Bold.ttf'),
         'Italianno-Regular': require('../../assets/fonts/Italianno-Regular.ttf'),
+        'RobotoSerif-Medium': require('../../assets/fonts/RobotoSerif-Medium.ttf')
       });
     
       const onLayoutRootView = useCallback(async () => {

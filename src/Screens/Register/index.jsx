@@ -1,6 +1,8 @@
-import {View, Image,StyleSheet, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native'
+import {View, Image,StyleSheet, Text, TextInput, TouchableOpacity,} from 'react-native'
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 import { useEffect } from 'react';
+import DimissKeyBoard from '../../config/DimissKeyBoard';
+
 function Register() {
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
 
@@ -13,46 +15,69 @@ function Register() {
     }
 
     return (
-        <View style={style.screenConteiner}>
-            <Text style={style.titleLogo}>YumYelp</Text>
-            <View style={style.formConteiner}>
-                <Text>Cadastro</Text>
-                <Text>Conta de usuário</Text>
-                <View style={style.inputConteiner}>
-                    <View style={style.label}>
-                        <Text>Usuario</Text>
-                    <TextInput
-                        style={style.inputStyle}
-                        placeholder='nome de usuario'
-                        //   onChangeText={setInputValue}
-                    />
+        <DimissKeyBoard>
+                <View style={style.screenConteiner}>
+                <Text style={style.titleLogo}>YumYelp</Text>
+                <View style={style.formConteiner}>
+                    <View style={style.conteinerFormContent}>
+                    <View 
+                        style={{
+                            display: 'flex',
+                            gap: 14,
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Text style={style.textSecundaryStyle}>Cadastro</Text>
+                        <Text style={style.textDefault}>Conta de usuário</Text>
+
                     </View>
-                   <View style={style.label}>
-                   <Text>email</Text>
-                   <TextInput
-                        style={style.inputStyle}
-                        placeholder='email'
-                    //   onChangeText={setInputValue}
-                    />
-                   </View>
-                  <View style={style.label}>
-                  <Text>senha</Text>
+                    <View style={style.inputConteiner}>
+                        <View style={style.label}>
+                            <View style={{width: '80%', }}>
+                                <Text style={{color: 'white'}}>Usuario</Text>    
+                            </View>
+                        <TextInput
+                            style={style.inputStyle}
+                            placeholder='nome de usuario'
+                            //   onChangeText={setInputValue}
+                        />
+                        </View>
+                    <View style={style.label}>
+                    <View style={{width: '80%', }}>
+                            <Text style={{color: 'white'}}>email</Text>
+                    </View>
                     <TextInput
-                        style={style.inputStyle}
-                        placeholder='senha'
-                    //   onChangeText={setInputValue}
-                    />
-                  </View>
+                            style={style.inputStyle}
+                            placeholder='email'
+                        //   onChangeText={setInputValue}
+                        />
+                    </View>
+                    <View style={style.label}>
+                    <View style={{width: '80%', }}>
+                            <Text style={{color: 'white'}}>senha</Text>
+                    </View>
+                        <TextInput
+                            style={style.inputStyle}
+                            placeholder='senha'
+                        //   onChangeText={setInputValue}
+                        />
+                    </View>
+                    </View>
+                    <TouchableOpacity style={style.button}>
+                        <Text style={{color: 'white'}}>Criar conta</Text>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={style.button}>
-                    <Text style={{color: 'white'}}>Criar conta</Text>
-                </TouchableOpacity>
+                    </View>   
             </View>
-        </View>
+        </DimissKeyBoard>
     );
 }
 
 const style = StyleSheet.create({
+    conteiner: {
+        flex: 1,
+    },
     titleLogo: {
         fontFamily: 'Italianno-Regular',
         color: 'white',
@@ -81,20 +106,22 @@ const style = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
-        height: '45%',
+        height: '55%',
         width: '100%'
     },
     inputStyle: {
-      height: 42,
+      height: 50,
+      fontSize: 16,
       width: '85%',
       backgroundColor: 'white',
       padding: 10,
-      borderRadius:24,
+      borderRadius:14,
     },
     button: {
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
-        padding: 10,
+        padding: 18,
+        fontSize: 24,
         width: '80%',
         borderRadius:24,
         color: 'white',
@@ -105,6 +132,23 @@ const style = StyleSheet.create({
         display: 'flex',
         // justifyContent: 'center',
         alignItems: 'center'
+    },
+    textSecundaryStyle: {
+        fontFamily: 'RobotoSerif-Medium',
+        color: 'white',
+        fontSize: 28,
+    },
+    textDefault:{
+        fontFamily: 'Montserrat-Regular',
+        color: 'white',
+        fontSize: 18,
+    },
+    conteinerFormContent: {
+        height: '90%',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
     }
 })
 
