@@ -1,10 +1,52 @@
-import {View, Image,StyleSheet, Text, TextInput, TouchableOpacity,} from 'react-native'
+import {View, Image,StyleSheet, Text, TextInput, TouchableOpacity, Alert,} from 'react-native'
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import DimissKeyBoard from '../../config/DimissKeyBoard';
+import createUser from '../../api';
+
 
 function Register() {
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
+    const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+    
+    // const getUser = async() => {
+    //     try {
+    //         const user = await createUser()
+    //          console.log(user)
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
+    // }
+    useEffect(async()=>{
+        const user = await createUser()
+        console.log(user)
+    }, [])
+    // getUser()
+
+    const hadleRegister = async() => {
+        try {
+            const formData = new FormData()
+
+            if(!nome || !email || !senha ) {
+                Alert.alert('Por favor, preecha todos os campos')
+                return;
+            }
+
+            formData.append("nome", nome) 
+            formData.append("email", email)
+            formData.append("senha", senha)
+
+            const response = await createUser(formData)
+
+            console.log(response)
+            Alert.alert('Sucesso', 'Usuário criado com sucesso');
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
 
     useEffect(() => {
       onLayoutRootView(); 
@@ -30,7 +72,6 @@ function Register() {
                     >
                         <Text style={style.textSecundaryStyle}>Cadastro</Text>
                         <Text style={style.textDefault}>Conta de usuário</Text>
-
                     </View>
                     <View style={style.inputConteiner}>
                         <View style={style.label}>
@@ -40,7 +81,7 @@ function Register() {
                         <TextInput
                             style={style.inputStyle}
                             placeholder='nome de usuario'
-                            //   onChangeText={setInputValue}
+                              onChangeText={setNome}
                         />
                         </View>
                     <View style={style.label}>
@@ -50,7 +91,7 @@ function Register() {
                     <TextInput
                             style={style.inputStyle}
                             placeholder='email'
-                        //   onChangeText={setInputValue}
+                          onChangeText={setEmail}
                         />
                     </View>
                     <View style={style.label}>
@@ -60,11 +101,11 @@ function Register() {
                         <TextInput
                             style={style.inputStyle}
                             placeholder='senha'
-                        //   onChangeText={setInputValue}
+                          onChangeText={setSenha}
                         />
                     </View>
                     </View>
-                    <TouchableOpacity style={style.button}>
+                    <TouchableOpacity style={style.button} onPress={hadleRegister}>
                         <Text style={{color: 'white'}}>Criar conta</Text>
                     </TouchableOpacity>
                 </View>

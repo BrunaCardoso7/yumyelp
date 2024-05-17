@@ -21,6 +21,8 @@ function Cardapio () {
       return null;
     }
 
+    
+
     return (
         <ScrollView onLayout={onLayoutRootView} >
             <Image style={styles.imageStyle} source={require('../../../assets/Rectangle 6.png')}/>
