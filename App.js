@@ -9,11 +9,11 @@ export default function App() {
     <View style={{
       flex: 2,
     }}>
-      <Register />
-      {/* <Header/> */}
-      {/* <NavigationContainer>
+      {/* <Register /> */}
+      <Header/>
+      <NavigationContainer>
         <TabNagation/>
-      </NavigationContainer> */}
+      </NavigationContainer>
     </View>
   );
 }

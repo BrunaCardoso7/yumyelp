@@ -1,13 +1,29 @@
-import {View, Image,StyleSheet, Text, ScrollView, TextInput} from 'react-native'
+import {View, Image,StyleSheet, Text, ScrollView, TextInput, Dimensions, FlatList} from 'react-native'
 import { useCallback, useEffect, useState} from 'react'; 
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { Dimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
+// import { FlatList } from 'react-native-gesture-handler';
+import { produtoData } from '../../mocks/produto-mock';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const screenWidth = Dimensions.get('window').width;
+
 SplashScreen.preventAutoHideAsync();
+
+function Produto ({uri, preco}) {
+  return (
+    <>
+        <View style={styles.conteinerProduct}>
+          <View style={styles.produto}></View>
+          <Image source={require('../../../assets/Rectangle 8.png')}/>
+          <Text style={styles.moneyStyle}>{preco}</Text>
+        </View>
+    </>
+
+  )
+}
 
 function Cardapio () {
     const [inputValue, setInputValue] = useState('')
@@ -24,17 +40,18 @@ function Cardapio () {
     
 
     return (
-        <ScrollView onLayout={onLayoutRootView} >
-            <Image style={styles.imageStyle} source={require('../../../assets/Rectangle 6.png')}/>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+<ScrollView onLayout={onLayoutRootView} >
+            <Image style={styles.imageStyle} source={require('../../../assets/icon.png')}/>
             <View style={styles.conteinerInfo}>
               <View style={styles.conteiner}>
                 <Text style={styles.textTitle}>
                     Restaurante da chica
                 </Text>
                 <Text style={styles.textSubTitle}>
-                Procurando o restaurante mais tradicional de São 
-                Luís? Achou: é o Cabana do Sol. É o melhor lugar 
-                para provar a carne de sol com todos os seus acompanhamentos
+                  Procurando o restaurante mais tradicional de São 
+                  Luís? Achou: é o Cabana do Sol. É o melhor lugar 
+                  para provar a carne de sol com todos os seus acompanhamentos
                 </Text>
               </View>
               <View style={styles.conteiner}>
@@ -50,26 +67,14 @@ function Cardapio () {
                     Cardápio e promoções
                 </Text>
                 <View style={styles.products}>
-                  <View style={styles.conteinerProduct}>
-                    <Image source={require('../../../assets/Rectangle 8.png')}/>
-                    <Text style={styles.moneyStyle}>R$ 5,00</Text>
-                  </View>
-                  <View style={styles.conteinerProduct}>
-                    <Image source={require('../../../assets/Rectangle 8.png')}/>
-                    <Text style={styles.moneyStyle}>R$ 5,00</Text>
-                  </View>
-                  <View style={styles.conteinerProduct}>
-                    <Image source={require('../../../assets/Rectangle 8.png')}/>
-                    <Text style={styles.moneyStyle}>R$ 5,00</Text>
-                  </View>
-                  <View style={styles.conteinerProduct}>
-                    <Image source={require('../../../assets/Rectangle 8.png')}/>
-                    <Text style={styles.moneyStyle}>R$ 5,00</Text>
-                  </View>
-                  <View style={styles.conteinerProduct}>
-                    <Image source={require('../../../assets/Rectangle 8.png')}/>
-                    <Text style={styles.moneyStyle}>R$ 5,00</Text>
-                  </View>
+                  <ScrollView>
+                    <FlatList 
+                      horizontal
+                      data={produtoData}
+                      renderItem={({item}) => <Produto uri={item.uri} preco={item.preco}/>}
+                      keyExtractor={item => item.id}
+                    />
+                  </ScrollView>
                 </View>
               </View>
               <View style={styles.conteiner}>
@@ -81,6 +86,7 @@ function Cardapio () {
                 </Text>
               </View>
               <View style={styles.conteinerAva}>
+        
                 <Text style={styles.textTiltePrimary}>
                   Avaliar esse restaurante
                 </Text>
@@ -91,6 +97,7 @@ function Cardapio () {
                   <AntDesign name="staro" size={24} color="yellow" />
                   <AntDesign name="staro" size={24} color="yellow" />
                 </View>
+             
                 <TextInput
                   style={styles.inputStyle}
                   placeholder='Qual a sua opinião'
@@ -98,24 +105,31 @@ function Cardapio () {
                 />
               </View>
               <View style={styles.bubbleComent}>
-              <View style={styles.conteinerStar}>
-                  <AntDesign name="staro" size={20} color="yellow" />
-                  <AntDesign name="staro" size={20} color="yellow" />
-                  <AntDesign name="staro" size={20} color="yellow" />
-                  <AntDesign name="staro" size={20} color="yellow" />
-                  <AntDesign name="staro" size={20} color="yellow" />
-                </View>
-                <View style={styles.profileImage}>
-                  <Text>oi</Text>
-                </View>
-                <View style={styles.comenter}>
-                  <Text>
-                    não sei se gostei da comida e achei um fio de cabelo na minha comida
-                  </Text>
-                </View>
+                <View style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
+                }}>
+                  <View style={styles.profileImage}>
+                    <Text>oi</Text>
+                  </View>
+                  <View style={styles.conteinerStar}>
+                    <AntDesign name="staro" size={20} color="yellow" />
+                    <AntDesign name="staro" size={20} color="yellow" />
+                    <AntDesign name="staro" size={20} color="yellow" />
+                    <AntDesign name="staro" size={20} color="yellow" />
+                    <AntDesign name="staro" size={20} color="yellow" />
+                  </View>
+              </View>
+                  <View style={styles.comenter}>
+                    <Text>
+                      não sei se gostei da comida e achei um fio de cabelo na minha comida
+                    </Text>
+                  </View>
               </View>
             </View>
         </ScrollView>
+      </GestureHandlerRootView>
     )
 }
 
@@ -186,11 +200,11 @@ const styles = StyleSheet.create({
       borderRadius: 6,
     },
     bubbleComent: {
-      backgroundColor: "#D9D9D9",
+      backgroundColor: "white",
       width: '100%',
       height: 'fit-content',
       gap: 8,
-      borderRadius: 14,
+      borderRadius: 24,
       padding: 10,
     },
     profileImage: {
@@ -201,6 +215,11 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       borderRadius: 100,
       backgroundColor: '#767676',
+    },
+    produto: {
+      width: 80,
+      height: 80,
+      backgroundColor: 'white',
     }
 })
 

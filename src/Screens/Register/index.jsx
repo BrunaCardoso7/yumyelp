@@ -10,37 +10,18 @@ function Register() {
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    
-    // const getUser = async() => {
-    //     try {
-    //         const user = await createUser()
-    //          console.log(user)
-    //     } catch (error) {
-    //         console.error(error)
-    //     }
-    // }
-    useEffect(async()=>{
-        const user = await createUser()
-        console.log(user)
-    }, [])
-    // getUser()
 
     const hadleRegister = async() => {
         try {
-            const formData = new FormData()
 
             if(!nome || !email || !senha ) {
                 Alert.alert('Por favor, preecha todos os campos')
                 return;
             }
 
-            formData.append("nome", nome) 
-            formData.append("email", email)
-            formData.append("senha", senha)
+            const response = await createUser(nome, email, senha)
 
-            const response = await createUser(formData)
-
-            console.log(response)
+            console.log("response: "+response.data)
             Alert.alert('Sucesso', 'Usuário criado com sucesso');
         } catch (error) {
             console.error(error)

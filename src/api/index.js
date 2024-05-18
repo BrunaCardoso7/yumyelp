@@ -1,15 +1,22 @@
 import axios from "axios";
 
-const url = 'http://localhost:4000/rest/'
+const url = 'https://yumyelp-api.onrender.com'
 
-async function createUser (formData) {
+async function createUser (nome, email, senha) {
     try {
- 
 
-        console.log(formData)
+    console.log("credentials to api: ", nome, email, senha)
 
     
-        const response = await axios.get(url)
+        const response = await axios.post(url+"/user/create", {
+            nome: nome,
+            email: email, 
+            senha: senha
+        }, {
+            "headers": {
+                "Content-Type": "application/json"
+            }
+        })
 
         console.log("Response received:", response);
         return response
