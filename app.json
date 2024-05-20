@@ -11,11 +11,11 @@
       "resizeMode": "contain",
       "backgroundColor": "#1F1C1C"
     },
-    "plugins": [
+    "plugins": [ 
       [
-        "expo-font",
+        "expo-image-picker",
         {
-          "fonts": ["./assets/fonts/Montserrat-Black.ttf"]
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
     ],

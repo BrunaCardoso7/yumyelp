@@ -3,6 +3,7 @@ import Cardapio from "../Screens/Cardapio"
 import { Ionicons } from "@expo/vector-icons"
 import Inicio from "../Screens/Inicio"
 import Register from "../Screens/Register"
+import CardapioRegister from "../Screens/CardapioRegister/index "
 
 const Tab = createBottomTabNavigator()
 
@@ -32,7 +33,7 @@ function TabNagation () {
             title: ''
           }}
           name="Inicio" 
-          component={Inicio} 
+          component={CardapioRegister} 
         />
           <Tab.Screen
             options={{
