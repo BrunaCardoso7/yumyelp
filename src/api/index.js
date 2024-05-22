@@ -26,4 +26,28 @@ async function createUser (nome, email, senha) {
     }
 }
 
-export default createUser 
+// async function createRestaurante (formData) {
+//     try {
+        
+//         const result = await axios.post(url, "/rest/create", 
+//         {
+//             nome,
+//             endereco,
+//             descricao,
+//             image
+//         }, 
+//         {
+//             "headers": {
+//                 "Content-Type": "multipart/form-data"
+//             }
+//         }
+//         )
+        
+//         return result
+//     } catch (error) {
+//         console.error("Error during API call:", error);
+//         throw error;
+//     }
+// }
+
+export default createUser

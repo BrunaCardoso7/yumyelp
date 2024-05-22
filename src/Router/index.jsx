@@ -25,8 +25,7 @@ function TabNagation () {
             },
             tabBarActiveTintColor: '#681A1A',
             tabBarInactiveTintColor: 'gray',
-          })}
-        >
+          })}>
           <Tab.Screen 
           options={{
             headerTransparent: true,

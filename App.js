@@ -7,13 +7,13 @@ import Register from './src/Screens/Register';
 export default function App() {
   return (
     <View style={{
-      flex: 2,
+      flex: 1,
     }}>
       {/* <Register /> */}
-      <Header/>
-      <NavigationContainer>
-        <TabNagation/>
-      </NavigationContainer>
+          <Header/>
+          <NavigationContainer>
+            <TabNagation/>
+          </NavigationContainer>
     </View>
   );
 }
