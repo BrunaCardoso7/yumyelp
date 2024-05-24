@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons"
 import Inicio from "../Screens/Inicio"
 import Register from "../Screens/Register"
 import CardapioRegister from "../Screens/CardapioRegister/index "
+import HomeTeste from "../Screens/Home"
 
 const Tab = createBottomTabNavigator()
 
@@ -32,7 +33,7 @@ function TabNagation () {
             title: ''
           }}
           name="Inicio" 
-          component={CardapioRegister} 
+          component={HomeTeste} 
         />
           <Tab.Screen
             options={{

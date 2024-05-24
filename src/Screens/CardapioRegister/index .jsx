@@ -1,65 +1,69 @@
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import ImageFile from "../../Components/ImagePicker";
-import { UseFontsCostumize } from "../../hooks/useFontsCustomize";
-import { useEffect, useState } from "react";
+import { UseFontsCostumize } from "../../hooks/useFontsCustomize"; 
+import { useEffect, useState, useCallback } from "react";
 import * as ImagePicker from 'expo-image-picker';
+import { createRestaurante } from "../../api";
+import { Alert } from "react-native";
 
 function CardapioRegister () {
-    const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
-    const [nome, setNome] = useState('')
-    const [endereco, setEndereco] = useState('')
-    const [descricao, setDescricao] = useState('')
+    const { onLayoutRootView, fontsLoaded, fontError } = UseFontsCostumize();
+    const [nome, setNome] = useState('');
+    const [endereco, setEndereco] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const [image, setImage] = useState(null);
 
-    // const [image, setImage] = useState();
-
-    // const hadleFileName = (prev) => {
-    //     setImage(prevData => ({
-    //         filename: prev,
-    //         ...prevData
-    //     }))
-    // }
-    // const hadleUri = (prev) => {
-    //     setImage(prevData => ({
-    //         ...prevData,
-    //         uri: prev,
-    //         ...prevData,
-    //     }))
-    // }
-    // const hadleExtend = (prev) => {
-    //     setImage(prevData => ({
-    //         ...prevData,
-    //         extends: prev,
-    //     }))
-    // }
-
-    const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
-        let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
+    const pickImage = useCallback(async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+  
+      if (!result.canceled) {
+        const uri = result.assets[0].uri;
+        const name = uri.split('/').pop();
+        const type = `image/${name.split('.').pop()}`;
+  
+        setImage({
+          uri,
+          name,
+          type,
         });
-    
-        console.log(result);
-    
-        if (!result.canceled) {
-            const name = result.assets[0].uri.substring(result.assets[0].uri.lastIndexOf('/') + 1, result.assets[0].uri.length)
-            const extend = name.split('.')[1]
-           
-           setImage(name)
-            // setImage({
-            //     filename: name,
-            //     uri: result.assets[0].uri,
-            //     extends: extend
-            // });
-        }   
-    };
-    
-    const hadleDataApi = async () => {
-        // const response = await createRes
-        console.log(nome, endereco, descricao, image)
-    }
+      }
+    }, [image])
+  
+    const handleDataApi = useCallback(async () => {
+      if (!image) {
+        Alert.alert("Error", "Please select an image first.");
+        return;
+      }
+  
+      const formData = new FormData();
+      formData.append("nome", nome);
+      formData.append("endereco", endereco);
+      formData.append("descricao", descricao);
+      formData.append("file", {
+        uri: image.uri,
+        type: image.type,
+        name: image.name,
+      });
+  
+      try {
+        const response = await createRestaurante(formData);
+        console.log('Response:', response);
+        if (response.status === 200) {
+          console.log('Requisição bem-sucedida!');
+          Alert.alert('Success', 'Restaurante criado com sucesso!');
+        } else {
+          console.log('Status da resposta:', response.status);
+          Alert.alert('Error', `Erro na criação do restaurante: ${response.status}`);
+        }
+      } catch (error) {
+        console.error('Error during API call:', error);
+      }
+    }, [nome, endereco, descricao, image]);
 
     useEffect(() => {
       onLayoutRootView(); 
@@ -69,55 +73,91 @@ function CardapioRegister () {
       return null;
     }
     return (
-        <View style={{
-            backgroundColor: '#1F1C1C',
-            flex:1,
+      <View style={{
+          backgroundColor: '#1F1C1C',
+          flex:1,
+          alignItems: 'center',
+          justifyContent: 'space-around',
+          width: '100%',
+          height: '80%',
+          paddingVertical: 20
+      }}>
+        <Text style={{
+          color: 'white',
+          fontFamily: 'Italianno-Regular',
+          fontSize: 42,
+        }}>YumYelp</Text>
+         <Text style={{
+          color: 'white',
+          fontFamily: 'Montserrat-SemiBold',
+          fontSize: 18,
+        }}>Compartilhe Seu Restaurante</Text>
+        <View
+          style={{
             alignItems: 'center',
             width: '100%',
-            height: '100%'
-        }}>
-            <ImageFile pickImage={pickImage} />
-            <Text
-                style={{
-                    color: 'white',
-                    fontSize: 18,
-                    width: '90%',
-                    marginTop: 32,
-                    fontFamily: 'Montserrat-Light'
-                }}
-            >
-                Apresente e compatilhe dos seus melhores pratos conosco!
-            </Text>
-            <View
-                style={{
-                    width: '100%',
-                    height: '60%',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                }}
-            >
+            height: '80%'
+        }}
+        >
+          <ImageFile imagem={image ? image.uri : null} pickImage={pickImage} /> 
+          <View
+              style={{
+                  width: '100%',
+                  height: '80%',
+                  alignItems: 'center',
+                  gap: 40,
+              }}
+          >
+            <View style={{
+                width: '100%',
+                height: '60%',
+                alignItems: 'center',
+                marginTop: 50,
+                gap: 14,
+                justifyContent: 'space-around'
 
-                <View style={{
-                    width: '100%',
-                    height: '50%',
-                    alignItems: 'center',
-                    marginTop: 50,
-                    gap: 14,
-                    justifyContent: 'space-around'
+            }}>
+              <View style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+              }}>
+                <View style={{width: '90%'}}>
+                    <Text style={{
+                      color: 'white',
+                      fontFamily: 'Montserrat-Light',
+                      fontSize: 16,
+                    }}>Nome do Restaurante</Text>
 
-                }}>
+                </View>
                 <TextInput 
-                    placeholder="Nome do restaurante"
-                    style={{
-                        height: 50,
-                        fontSize: 16,
-                        width: '90%',
-                        backgroundColor: 'white',
-                        padding: 8,
-                        borderRadius:14,
-                    }}
-                    onChangeText={setNome}
+                  placeholder="Nome do restaurante"
+                  style={{
+                      height: 50,
+                      fontSize: 16,
+                      width: '90%',
+                      backgroundColor: 'white',
+                      padding: 8,
+                      borderRadius:14,
+                  }}
+                  onChangeText={setNome}
                 />
+              </View>
+             
+              <View style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+              }}>
+                <View style={{width: '90%'}}>
+                    <Text style={{
+                      color: 'white',
+                      fontFamily: 'Montserrat-Light',
+                      fontSize: 16,
+                    }}>Endereço</Text>
+                </View>
                 <TextInput 
                     placeholder="Endereço"
                     style={{
@@ -126,11 +166,26 @@ function CardapioRegister () {
                         width: '90%',
                         backgroundColor: 'white',
                         padding: 8,
-                        borderRadius:14,
+                        borderRadius:16,
                     }}
                     onChangeText={setEndereco}
                 />
-                <TextInput 
+              </View>
+              <View style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+              }}>
+                <View style={{width: '90%'}}>
+                    <Text style={{
+                      color: 'white',
+                      fontSize: 16,
+                      fontFamily: 'Montserrat-Light'
+                    }}>Descrição</Text>
+
+                  </View>
+                  <TextInput 
                     placeholder="Descrição"
                     numberOfLines={5}
                     style={{
@@ -143,25 +198,27 @@ function CardapioRegister () {
                         textAlignVertical: 'top'
                     }}
                     onChangeText={setDescricao}
-                />
+                  />
                 </View>
-                <TouchableOpacity style={{
-                    backgroundColor: '#681A1A',
-                    width: '90%',
-                    alignItems: 'center',
-                    borderRadius: 14,
-                    paddingHorizontal: 20,
-                    paddingVertical: 10
-                }}
-                onPress={hadleDataApi} 
-                >
-                    <Text style={{
-                        color: 'white',
-                        fontSize: 18
-                    }}>Criar restaurante</Text>
-                </TouchableOpacity>
-            </View>
+              </View>
+              <TouchableOpacity style={{
+                  backgroundColor: '#681A1A',
+                  width: '90%',
+                  alignItems: 'center',
+                  borderRadius: 14,
+                  paddingHorizontal: 20,
+                  paddingVertical: 10
+              }}
+              onPress={handleDataApi} 
+              >
+                  <Text style={{
+                      color: 'white',
+                      fontSize: 18
+                  }}>Criar restaurante</Text>
+              </TouchableOpacity>
+          </View>
         </View>
+      </View>
     )
 }
 export default CardapioRegister

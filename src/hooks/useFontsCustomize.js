@@ -7,7 +7,8 @@ export const UseFontsCostumize = () => {
         'InriaSerif-Bold': require('../../assets/fonts/InriaSerif-Bold.ttf'),
         'Italianno-Regular': require('../../assets/fonts/Italianno-Regular.ttf'),
         'RobotoSerif-Medium': require('../../assets/fonts/RobotoSerif-Medium.ttf'),
-        'Montserrat-Light': require('../../assets/fonts/Montserrat-Light.ttf')
+        'Montserrat-Light': require('../../assets/fonts/Montserrat-Light.ttf'),
+        'Montserrat-SemiBold': require('../../assets/fonts/Montserrat-SemiBold.ttf'),
       });
     
       const onLayoutRootView = useCallback(async () => {

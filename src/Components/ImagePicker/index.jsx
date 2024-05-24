@@ -1,6 +1,6 @@
-import { TouchableOpacity, View, Text } from "react-native";
+import { TouchableOpacity, View, Text, Image } from "react-native";
 
-function ImageFile ({pickImage}) {
+function ImageFile ({imagem, pickImage}) {
     return (
         <TouchableOpacity 
           style={{
@@ -18,7 +18,16 @@ function ImageFile ({pickImage}) {
                 alignItems: 'center',
                 justifyContent: 'center'
             }}>
-                <Text>Adicione uma imagem</Text>
+                 {
+                    imagem ? (
+                        <Image 
+                            source={{ uri: imagem }} 
+                            style={{ width: '100%', height: '100%', borderRadius: 24 }}
+                        />
+                    ) : (
+                        <Text>Adicione uma imagem</Text>
+                    )
+                }
             </View>
         </TouchableOpacity>
     )
