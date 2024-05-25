@@ -5,6 +5,7 @@ import { useEffect, useState, useCallback } from "react";
 import * as ImagePicker from 'expo-image-picker';
 import { createRestaurante } from "../../api";
 import { Alert } from "react-native";
+import DimissKeyBoard from "../../config/DimissKeyBoard";
 
 function CardapioRegister () {
     const { onLayoutRootView, fontsLoaded, fontError } = UseFontsCostumize();
@@ -73,152 +74,155 @@ function CardapioRegister () {
       return null;
     }
     return (
-      <View style={{
-          backgroundColor: '#1F1C1C',
-          flex:1,
-          alignItems: 'center',
-          justifyContent: 'space-around',
-          width: '100%',
-          height: '80%',
-          paddingVertical: 20
-      }}>
-        <Text style={{
-          color: 'white',
-          fontFamily: 'Italianno-Regular',
-          fontSize: 42,
-        }}>YumYelp</Text>
-         <Text style={{
-          color: 'white',
-          fontFamily: 'Montserrat-SemiBold',
-          fontSize: 18,
-        }}>Compartilhe Seu Restaurante</Text>
-        <View
-          style={{
+      <DimissKeyBoard>
+
+        <View style={{
+            backgroundColor: '#1F1C1C',
+            flex:1,
             alignItems: 'center',
+            justifyContent: 'space-around',
             width: '100%',
-            height: '80%'
-        }}
-        >
-          <ImageFile imagem={image ? image.uri : null} pickImage={pickImage} /> 
+            height: '80%',
+            paddingVertical: 20
+        }}>
+          <Text style={{
+            color: 'white',
+            fontFamily: 'Italianno-Regular',
+            fontSize: 42,
+          }}>YumYelp</Text>
+          <Text style={{
+            color: 'white',
+            fontFamily: 'Montserrat-SemiBold',
+            fontSize: 18,
+          }}>Compartilhe Seu Restaurante</Text>
           <View
-              style={{
-                  width: '100%',
-                  height: '80%',
-                  alignItems: 'center',
-                  gap: 40,
-              }}
+            style={{
+              alignItems: 'center',
+              width: '100%',
+              height: '80%'
+          }}
           >
-            <View style={{
-                width: '100%',
-                height: '60%',
-                alignItems: 'center',
-                marginTop: 50,
-                gap: 14,
-                justifyContent: 'space-around'
-
-            }}>
+            <ImageFile imagem={image ? image.uri : null} pickImage={pickImage} /> 
+            <View
+                style={{
+                    width: '100%',
+                    height: '80%',
+                    alignItems: 'center',
+                    gap: 40,
+                }}
+            >
               <View style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 4,
-              }}>
-                <View style={{width: '90%'}}>
-                    <Text style={{
-                      color: 'white',
-                      fontFamily: 'Montserrat-Light',
-                      fontSize: 16,
-                    }}>Nome do Restaurante</Text>
+                  width: '100%',
+                  height: '60%',
+                  alignItems: 'center',
+                  marginTop: 50,
+                  gap: 14,
+                  justifyContent: 'space-around'
 
-                </View>
-                <TextInput 
-                  placeholder="Nome do restaurante"
-                  style={{
-                      height: 50,
-                      fontSize: 16,
-                      width: '90%',
-                      backgroundColor: 'white',
-                      padding: 8,
-                      borderRadius:14,
-                  }}
-                  onChangeText={setNome}
-                />
-              </View>
-             
-              <View style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 4,
               }}>
-                <View style={{width: '90%'}}>
-                    <Text style={{
-                      color: 'white',
-                      fontFamily: 'Montserrat-Light',
-                      fontSize: 16,
-                    }}>Endereço</Text>
-                </View>
-                <TextInput 
-                    placeholder="Endereço"
+                <View style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                }}>
+                  <View style={{width: '90%'}}>
+                      <Text style={{
+                        color: 'white',
+                        fontFamily: 'Montserrat-Light',
+                        fontSize: 16,
+                      }}>Nome do Restaurante</Text>
+
+                  </View>
+                  <TextInput 
+                    placeholder="Nome do restaurante"
                     style={{
                         height: 50,
                         fontSize: 16,
                         width: '90%',
                         backgroundColor: 'white',
                         padding: 8,
-                        borderRadius:16,
-                    }}
-                    onChangeText={setEndereco}
-                />
-              </View>
-              <View style={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 4,
-              }}>
-                <View style={{width: '90%'}}>
-                    <Text style={{
-                      color: 'white',
-                      fontSize: 16,
-                      fontFamily: 'Montserrat-Light'
-                    }}>Descrição</Text>
-
-                  </View>
-                  <TextInput 
-                    placeholder="Descrição"
-                    numberOfLines={5}
-                    style={{
-                        height: 70,
-                        fontSize: 16,
-                        width: '90%',
-                        backgroundColor: 'white',
-                        padding: 8,
                         borderRadius:14,
-                        textAlignVertical: 'top'
                     }}
-                    onChangeText={setDescricao}
+                    onChangeText={setNome}
                   />
                 </View>
-              </View>
-              <TouchableOpacity style={{
-                  backgroundColor: '#681A1A',
-                  width: '90%',
+              
+                <View style={{
+                  width: '100%',
+                  display: 'flex',
                   alignItems: 'center',
-                  borderRadius: 14,
-                  paddingHorizontal: 20,
-                  paddingVertical: 10
-              }}
-              onPress={handleDataApi} 
-              >
-                  <Text style={{
-                      color: 'white',
-                      fontSize: 18
-                  }}>Criar restaurante</Text>
-              </TouchableOpacity>
+                  gap: 4,
+                }}>
+                  <View style={{width: '90%'}}>
+                      <Text style={{
+                        color: 'white',
+                        fontFamily: 'Montserrat-Light',
+                        fontSize: 16,
+                      }}>Endereço</Text>
+                  </View>
+                  <TextInput 
+                      placeholder="Endereço"
+                      style={{
+                          height: 50,
+                          fontSize: 16,
+                          width: '90%',
+                          backgroundColor: 'white',
+                          padding: 8,
+                          borderRadius:16,
+                      }}
+                      onChangeText={setEndereco}
+                  />
+                </View>
+                <View style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                }}>
+                  <View style={{width: '90%'}}>
+                      <Text style={{
+                        color: 'white',
+                        fontSize: 16,
+                        fontFamily: 'Montserrat-Light'
+                      }}>Descrição</Text>
+
+                    </View>
+                    <TextInput 
+                      placeholder="Descrição"
+                      numberOfLines={5}
+                      style={{
+                          height: 70,
+                          fontSize: 16,
+                          width: '90%',
+                          backgroundColor: 'white',
+                          padding: 8,
+                          borderRadius:14,
+                          textAlignVertical: 'top'
+                      }}
+                      onChangeText={setDescricao}
+                    />
+                  </View>
+                </View>
+                <TouchableOpacity style={{
+                    backgroundColor: '#681A1A',
+                    width: '90%',
+                    alignItems: 'center',
+                    borderRadius: 14,
+                    paddingHorizontal: 20,
+                    paddingVertical: 10
+                }}
+                onPress={handleDataApi} 
+                >
+                    <Text style={{
+                        color: 'white',
+                        fontSize: 18
+                    }}>Criar restaurante</Text>
+                </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
+      </DimissKeyBoard>
     )
 }
 export default CardapioRegister

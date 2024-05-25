@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { View } from 'react-native';
-import Header from './src/Components/Header';
-import { NavigationContainer } from '@react-navigation/native';
-import TabNagation from './src/Router';
-import Register from './src/Screens/Register';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import CardapioRegister from './src/Screens/CardapioRegister/index ';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import MyTabs from './src/Router/index';
+import RouterPages from './src/Router/PageRouter';
 
 SplashScreen.preventAutoHideAsync();
+
 
 export default function App() {
   useEffect(() => {
@@ -18,16 +17,11 @@ export default function App() {
 
     prepare();
   }, []);
+
   return (
-    <View style={{
-      flex: 1,
-    }}>
-      {/* <Register /> */}
-        <CardapioRegister />
-        {/* <Header/>
-        <NavigationContainer>
-          <TabNagation/>
-        </NavigationContainer> */}
-    </View>
+    <NavigationContainer>
+     <StatusBar backgroundColor="black" barStyle="light-content"/>
+      <RouterPages />
+    </NavigationContainer>
   );
 }

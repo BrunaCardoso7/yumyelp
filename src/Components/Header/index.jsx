@@ -1,36 +1,47 @@
-import {View, Text} from 'react-native'
-import { UseFontsCostumize } from '../../hooks/useFontsCustomize'
-import { Dimensions } from 'react-native';
-import { useEffect } from 'react';
-const screenWidth = Dimensions.get('window').width;
-function Header () {
-    const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
-    useEffect(() => {
-        onLayoutRootView(); 
-    }, [onLayoutRootView]);
+import {View,TouchableOpacity,Text,StyleSheet} from 'react-native'
+import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
+import {useEffect} from 'react'; 
+import { useNavigation } from '@react-navigation/native';
 
-    if (!fontsLoaded && !fontError) {
+
+const Header = () =>{
+  const navigation = useNavigation();
+  const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
+
+  useEffect(() => {
+    onLayoutRootView(); 
+  }, [onLayoutRootView]);
+
+  if (!fontsLoaded && !fontError) {
     return null;
-    }
-    return (
-        <View 
-        onLayout={onLayoutRootView}
-        style={{
-            backgroundColor: '#681A1A',
-            width: screenWidth,
-            height: 90,
-            display: 'flex',
-            justifyContent: 'center',
-            padding: 12,
-            paddingTop: 24,
-        }}
-        >
+  }
+
+  const handlePress = () => {
+     navigation.navigate('Home');
+  };
+
+  return(
+    <View 
+    onLayout={onLayoutRootView}
+    style={{
+        backgroundColor: '#681A1A',
+        width: "100%",
+        height: 80,
+        display: 'flex',
+        justifyContent: 'center',
+        paddingHorizontal: 24,
+        paddingTop: 10,
+    }}
+    >
+      <TouchableOpacity onPress={handlePress}>
         <Text style={{
             color: 'white',
             fontFamily: 'Italianno-Regular',
-            fontSize: 38,
+            fontSize: 42,
         }}>YumYelp</Text>
-        </View>
-    )
+      </TouchableOpacity>
+    </View>
+  )
 }
+
 export default Header

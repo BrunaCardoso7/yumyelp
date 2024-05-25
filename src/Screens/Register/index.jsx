@@ -3,13 +3,15 @@ import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 import { useEffect, useState } from 'react';
 import DimissKeyBoard from '../../config/DimissKeyBoard';
 import createUser from '../../api';
-
+import { useNavigation } from '@react-navigation/native';
 
 function Register() {
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+    const navigation = useNavigation()
+
 
     const hadleRegister = async() => {
         try {
@@ -23,6 +25,7 @@ function Register() {
 
             console.log("response: "+response.data)
             Alert.alert('Sucesso', 'Usuário criado com sucesso');
+            navigation.navigate('Continue')
         } catch (error) {
             console.error(error)
         }
@@ -48,11 +51,11 @@ function Register() {
                             display: 'flex',
                             gap: 14,
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+                            width: '100%'
                         }}
                     >
                         <Text style={style.textSecundaryStyle}>Cadastro</Text>
-                        <Text style={style.textDefault}>Conta de usuário</Text>
                     </View>
                     <View style={style.inputConteiner}>
                         <View style={style.label}>
@@ -84,11 +87,14 @@ function Register() {
                             placeholder='senha'
                           onChangeText={setSenha}
                         />
-                    </View>
+                        <TouchableOpacity  onPress={() => navigation.navigate('Login')}>
+                            <Text style={style.esqpass}>Já possou uma conta</Text>
+                        </TouchableOpacity>
                     </View>
                     <TouchableOpacity style={style.button} onPress={hadleRegister}>
-                        <Text style={{color: 'white'}}>Criar conta</Text>
+                        <Text style={{color:'#fff', fontSize: 18}}>Criar conta</Text>
                     </TouchableOpacity>
+                    </View>
                 </View>
                     </View>   
             </View>
@@ -101,11 +107,10 @@ const style = StyleSheet.create({
         flex: 1,
     },
     titleLogo: {
-        fontFamily: 'Italianno-Regular',
-        color: 'white',
-        textAlign: 'center',
-        fontSize: 52,
-        marginBottom: 50,
+        color:'#fff',
+        fontSize:50,
+        fontFamily:'Italianno',
+        textAlign:'center'
     },
     screenConteiner: {
         padding: 24,
@@ -114,6 +119,12 @@ const style = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    esqpass:{
+        color:'#fff',
+        width: '100%',
+        textAlign: 'center',
+        paddingTop: 10
     },
     formConteiner: {
         backgroundColor: '#681A1A',
@@ -128,22 +139,22 @@ const style = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
-        height: '55%',
+        height: '80%',
         width: '100%'
     },
     inputStyle: {
       height: 50,
       fontSize: 16,
       width: '85%',
-      backgroundColor: 'white',
+      backgroundColor: '#D9D9D9',
       padding: 10,
-      borderRadius:14,
+      borderRadius:34,
     },
     button: {
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
-        padding: 18,
-        fontSize: 24,
+        padding: 10,
+        fontSize: 28,
         width: '80%',
         borderRadius:24,
         color: 'white',
@@ -156,7 +167,8 @@ const style = StyleSheet.create({
         alignItems: 'center'
     },
     textSecundaryStyle: {
-        fontFamily: 'RobotoSerif-Medium',
+        fontSize:32,
+        fontFamily:'Montaga',
         color: 'white',
         fontSize: 28,
     },
@@ -166,6 +178,7 @@ const style = StyleSheet.create({
         fontSize: 18,
     },
     conteinerFormContent: {
+        paddingVertical: 20,
         height: '90%',
         width: '100%',
         display: 'flex',

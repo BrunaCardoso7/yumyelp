@@ -16,7 +16,6 @@ function Produto ({uri, preco}) {
   return (
     <>
         <View style={styles.conteinerProduct}>
-          <View style={styles.produto}></View>
           <Image source={require('../../../assets/Rectangle 8.png')}/>
           <Text style={styles.moneyStyle}>{preco}</Text>
         </View>
