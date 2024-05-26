@@ -3,8 +3,9 @@ import { UseFontsCostumize } from "../../hooks/useFontsCustomize";
 import DimissKeyBoard from "../../config/DimissKeyBoard"
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
+
 
 function ContinueWith () {
     const navigation = useNavigation()
@@ -17,9 +18,39 @@ function ContinueWith () {
       if (!fontsLoaded && !fontError) {
         return null;
       }
+
+    const handleRestaurante = useCallback(() => {
+        const tipo = "admin";
+        navigation.navigate("Register", { data: tipo });
+    }, [navigation]);
+    
+    const handleUsuario = useCallback(() => {
+        const tipo = "user";
+        navigation.navigate("Register", { data: tipo });
+    }, [navigation]);
+
     return (
         <DimissKeyBoard>
             <View style={style.screenConteiner}>
+            <TouchableOpacity 
+                        onPress={() => navigation.goBack()}
+                        style={{
+                            width: '100%',
+                            position: 'absolute',
+                            top: 18,
+                            left: 18,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <AntDesign name="left" size={24} color="white" />
+                        <Text style={{
+                            color: 'white',
+                            fontSize: 18,
+                            marginLeft: 20
+                        }}>Voltar</Text>
+                    </TouchableOpacity>
             <Text style={style.titleLogo}>YumYelp</Text>
             <View style={style.buttonsConteiner}>
                 <View style={style.conteinerFormContent}>
@@ -44,7 +75,7 @@ function ContinueWith () {
                                 <Text style={{color: 'white'}}>Compartilhe com nossos usuários sua imagem e seus pratos </Text>    
                             </View>
                             <TouchableOpacity 
-                                onPress={() => navigation.navigate('CardRegister')}
+                                onPress={handleRestaurante}
                                 style={style.button}
                             >
                                 <View style={{
@@ -66,7 +97,7 @@ function ContinueWith () {
                                 <Text style={{color: 'white'}}>Navegue nesse mar de restaurante esperando por você</Text>    
                             </View>
                             <TouchableOpacity 
-                                onPress={() => navigation.navigate('Main')}
+                                onPress={handleUsuario}
                                 style={style.button}
                             >
                             <View style={{
@@ -81,6 +112,10 @@ function ContinueWith () {
                                 </View>
                             </TouchableOpacity>
                             </View>
+                            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                                <Text>já possuo conta</Text>
+
+                            </TouchableOpacity>
                         </View>
                     </View>
                     

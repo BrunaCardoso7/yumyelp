@@ -14,16 +14,17 @@ export async function getRestaurantes () {
     }
 }
 
-async function createUser (nome, email, senha) {
+async function createUser (nome, email, senha, data) {
     try {
 
-    console.log("credentials to api: ", nome, email, senha)
+    console.log("credentials to api: ", nome, email, senha, data)
 
     
         const response = await axios.post(url+"/user/create", {
             nome: nome,
             email: email, 
-            senha: senha
+            senha: senha,
+            tipo: data
         }, {
             "headers": {
                 "Content-Type": "application/json"
@@ -38,16 +39,19 @@ async function createUser (nome, email, senha) {
     }
 }
 
-export async function createRestaurante (formData) {
+export async function createRestaurante (formData, userId) {
     try {
-        console.log('função foi chamada', formData)
+        console.log('função foi chamada', formData, userId)
         
-        const result = await axios.post('https://yumyelp-api.onrender.com/rest/create', formData,
-        {
-            "headers": {
-                "Content-Type": "multipart/form-data"
+        const result = await axios.post(`https://yumyelp-api.onrender.com/rest/create/`, formData,
+            {
+                "params":{
+                    "user_id": userId
+                },
+                "headers": {
+                    "Content-Type": "multipart/form-data"
+                }
             }
-        }
         )
         
         return result
@@ -90,7 +94,7 @@ export async function loginUser (email, senha) {
         await AsyncStorage.setItem("userId", userId)
 
 
-        return response
+        return response.data
     } catch (error) {
         console.error("Error during API call:", error);
         throw error;
@@ -106,5 +110,51 @@ export async function getById (id) {
         throw error;
     }
 }
+export async function getUserById (id) {
+    try {
+        const response = await axios.get(`${url}/user/${id}`)
+
+        return response.data
+    } catch (error) {
+        console.error("Error during API call:", error);
+        throw error;
+    }
+}
+
+export async function getAllProdutos () {
+    try {
+        
+        const produtos = await axios.get(`${url}/prod/`)
+
+        return produtos.data
+    } catch (error) {
+        console.error("Error during API call:", error);
+        throw error;
+    }
+}
+
+export async function createProduto (formData, restId) {
+    try {
+        console.log('função foi chamada', formData, restId)
+        
+        const result = await axios.post('https://yumyelp-api.onrender.com/prod/create/', formData,
+        {
+            "params": {
+                "rest_id": restId
+            },
+            "headers": {
+                "Content-Type": "multipart/form-data"
+            }
+        }
+        )
+        
+        return result
+    } catch (error) {
+        console.error("Error during API call:", error);
+        throw error;
+    }
+}
+
+
 
 export default createUser

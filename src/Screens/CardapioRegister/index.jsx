@@ -1,11 +1,14 @@
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import ImageFile from "../../Components/ImagePicker";
 import { UseFontsCostumize } from "../../hooks/useFontsCustomize"; 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useId } from "react";
 import * as ImagePicker from 'expo-image-picker';
 import { createRestaurante } from "../../api";
 import { Alert } from "react-native";
 import DimissKeyBoard from "../../config/DimissKeyBoard";
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function CardapioRegister () {
     const { onLayoutRootView, fontsLoaded, fontError } = UseFontsCostumize();
@@ -13,6 +16,7 @@ function CardapioRegister () {
     const [endereco, setEndereco] = useState('');
     const [descricao, setDescricao] = useState('');
     const [image, setImage] = useState(null);
+    const navigation = useNavigation()
 
     const pickImage = useCallback(async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -40,6 +44,8 @@ function CardapioRegister () {
         Alert.alert("Error", "Please select an image first.");
         return;
       }
+
+      const userId = await AsyncStorage.getItem("userId")
   
       const formData = new FormData();
       formData.append("nome", nome);
@@ -52,7 +58,8 @@ function CardapioRegister () {
       });
   
       try {
-        const response = await createRestaurante(formData);
+        const response = await createRestaurante(formData, userId);
+        
         console.log('Response:', response);
         if (response.status === 200) {
           console.log('Requisição bem-sucedida!');
@@ -61,11 +68,16 @@ function CardapioRegister () {
           console.log('Status da resposta:', response.status);
           Alert.alert('Error', `Erro na criação do restaurante: ${response.status}`);
         }
+
+        console.log(response.data.retaurante.id)
+        await AsyncStorage.setItem("rest_id", response.data.retaurante.id)
+
+        navigation.navigate('PratosView')
       } catch (error) {
         console.error('Error during API call:', error);
       }
     }, [nome, endereco, descricao, image]);
-
+ 
     useEffect(() => {
       onLayoutRootView(); 
     }, [onLayoutRootView]);
@@ -77,14 +89,33 @@ function CardapioRegister () {
       <DimissKeyBoard>
 
         <View style={{
-            backgroundColor: '#1F1C1C',
-            flex:1,
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            width: '100%',
-            height: '80%',
-            paddingVertical: 20
+          backgroundColor: '#1F1C1C',
+          flex:1,
+          alignItems: 'center',
+          justifyContent: 'space-around',
+          width: '100%',
+          height: '80%',
+          paddingVertical: 0
         }}>
+          <TouchableOpacity 
+            onPress={() => navigation.navigate('Continue')}
+            style={{
+                width: '100%',
+                position: 'absolute',
+                top:28,
+                left: 8,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center'
+            }}
+        >
+            <AntDesign name="left" size={24} color="white" />
+            <Text style={{
+                color: 'white',
+                fontSize: 18,
+                marginLeft: 20
+            }}>Voltar</Text>
+          </TouchableOpacity>
           <Text style={{
             color: 'white',
             fontFamily: 'Italianno-Regular',
@@ -92,8 +123,8 @@ function CardapioRegister () {
           }}>YumYelp</Text>
           <Text style={{
             color: 'white',
-            fontFamily: 'Montserrat-SemiBold',
-            fontSize: 18,
+            fontFamily: 'Montserrat-Light',
+            fontSize: 20,
           }}>Compartilhe Seu Restaurante</Text>
           <View
             style={{
@@ -102,7 +133,7 @@ function CardapioRegister () {
               height: '80%'
           }}
           >
-            <ImageFile imagem={image ? image.uri : null} pickImage={pickImage} /> 
+            <ImageFile imagem={image ? image.uri : null} pickImage={pickImage} height={200} /> 
             <View
                 style={{
                     width: '100%',
@@ -130,7 +161,7 @@ function CardapioRegister () {
                       <Text style={{
                         color: 'white',
                         fontFamily: 'Montserrat-Light',
-                        fontSize: 16,
+                        fontSize: 14,
                       }}>Nome do Restaurante</Text>
 
                   </View>
@@ -158,7 +189,7 @@ function CardapioRegister () {
                       <Text style={{
                         color: 'white',
                         fontFamily: 'Montserrat-Light',
-                        fontSize: 16,
+                        fontSize: 14,
                       }}>Endereço</Text>
                   </View>
                   <TextInput 
@@ -183,7 +214,7 @@ function CardapioRegister () {
                   <View style={{width: '90%'}}>
                       <Text style={{
                         color: 'white',
-                        fontSize: 16,
+                        fontSize: 14,
                         fontFamily: 'Montserrat-Light'
                       }}>Descrição</Text>
 

@@ -4,14 +4,18 @@ import { useEffect, useState } from 'react';
 import DimissKeyBoard from '../../config/DimissKeyBoard';
 import createUser from '../../api';
 import { useNavigation } from '@react-navigation/native';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function Register() {
+function Register({route}) {
+    const {data} = route.params
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const navigation = useNavigation()
 
+    console.log(data)
 
     const hadleRegister = async() => {
         try {
@@ -21,11 +25,17 @@ function Register() {
                 return;
             }
 
-            const response = await createUser(nome, email, senha)
+            const response = await createUser(nome, email, senha, data)
 
-            console.log("response: "+response.data)
+            console.log("response: "+response.data.user.id)
             Alert.alert('Sucesso', 'Usuário criado com sucesso');
-            navigation.navigate('Continue')
+            await AsyncStorage.setItem("userId",response.data.user.id)
+            
+            if( data === 'admin') {
+                navigation.navigate('Rest')
+            } else if ( data === 'user') {
+                navigation.navigate('Main')
+            }
         } catch (error) {
             console.error(error)
         }
@@ -43,6 +53,26 @@ function Register() {
     return (
         <DimissKeyBoard>
                 <View style={style.screenConteiner}>
+                    <TouchableOpacity 
+                        onPress={() => navigation.goBack()}
+                        style={{
+                            width: '100%',
+                            position: 'absolute',
+                            top: 18,
+                            left: 18,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <AntDesign name="left" size={24} color="white" />
+                        <Text style={{
+                            color: 'white',
+                            fontSize: 18,
+                            marginLeft: 20
+                        }}>Voltar</Text>
+                    </TouchableOpacity>
+
                 <Text style={style.titleLogo}>YumYelp</Text>
                 <View style={style.formConteiner}>
                     <View style={style.conteinerFormContent}>

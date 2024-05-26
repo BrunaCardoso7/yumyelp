@@ -2,6 +2,7 @@ import {View,Text,StyleSheet,TouchableOpacity} from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../Components/Header';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const User =  () =>{
   const navigation = useNavigation();
@@ -20,8 +21,14 @@ const User =  () =>{
   const Return = () =>{
     navigation.navigate('Perfil')
   }
+
+  const logout = async () => {
+    await AsyncStorage.removeItem("token")
+    await AsyncStorage.removeItem("userId")
+    navigation.navigate("Login")
+  }
   return(
-    <View style={styles.container}>
+    <View style={styles.container}> 
        <Header/>
         <View style={styles.retornar} >
           <FontAwesome5 name="angle-double-left" size={44} color="white" onPress={Return} />
@@ -53,7 +60,7 @@ const User =  () =>{
 
                         <View style={styles.linha}></View>
 
-                    <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                    <TouchableOpacity onPress={logout}>
                     <Text style={styles.sair}>Sair</Text>
                     </TouchableOpacity>
                 </View>

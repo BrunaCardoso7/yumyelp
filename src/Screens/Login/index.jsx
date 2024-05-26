@@ -3,16 +3,18 @@ import {
     Text,
     StyleSheet,
     TextInput,
-    TouchableOpacity 
+    TouchableOpacity ,
+    Alert
 } from 'react-native'
 import {useEffect, useState} from 'react'; 
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import DimissKeyBoard from '../../config/DimissKeyBoard';
 import { useNavigation } from '@react-navigation/native';
-import { loginUser } from '../../api';
+import { getUserById, loginUser } from '../../api';
 
 const Login = () => {
+
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
@@ -27,11 +29,19 @@ const Login = () => {
             }
 
             const response = await loginUser(email, senha)
+            
+            const tipo = response.user.tipo
 
-            navigation.navigate('Main')
+            console.log(tipo)
 
-            Alert.alert('Sucesso', 'Usuário criado com sucesso');
-            navigation.navigate('Continue')
+            Alert.alert('Sucesso', 'Usuário logado com sucesso');
+
+            if( tipo === 'admin') {
+                navigation.navigate('Rest')
+            } else if ( tipo === 'user') {
+                navigation.navigate('Main')
+            }
+
         } catch (error) {
             console.error(error)
         }
@@ -69,7 +79,7 @@ const Login = () => {
                             placeholder='Digite seu senha'
                             onChangeText={setSenha}
                         />
-                        <TouchableOpacity  onPress={() => navigation.navigate('Register')}>
+                        <TouchableOpacity  onPress={() => navigation.navigate('Continue')}>
                             <Text style={styles.esqpass}>Criar conta</Text>
                         </TouchableOpacity>
                     </View>

@@ -1,6 +1,6 @@
 import { TouchableOpacity, View, Text, Image } from "react-native";
 
-function ImageFile ({imagem, pickImage}) {
+function ImageFile ({imagem, pickImage, height}) {
     return (
         <TouchableOpacity 
           style={{
@@ -11,7 +11,7 @@ function ImageFile ({imagem, pickImage}) {
         >
             <View style={{
                 width: '100%',
-                height: 200,
+                height: height,
                 backgroundColor: 'white',
                 borderRadius: 24,
                 display: 'flex',
