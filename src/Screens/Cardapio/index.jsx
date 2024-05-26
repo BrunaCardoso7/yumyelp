@@ -7,6 +7,7 @@ import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 // import { FlatList } from 'react-native-gesture-handler';
 import { produtoData } from '../../mocks/produto-mock';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Header from '../../Components/Header';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -24,7 +25,8 @@ function Produto ({uri, preco}) {
   )
 }
 
-function Cardapio () {
+function Cardapio ({ route }) {
+    const { data } = route.params;
     const [inputValue, setInputValue] = useState('')
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
 
@@ -40,17 +42,16 @@ function Cardapio () {
 
     return (
       <GestureHandlerRootView style={{ flex: 1 }}>
-<ScrollView onLayout={onLayoutRootView} >
-            <Image style={styles.imageStyle} source={require('../../../assets/icon.png')}/>
+        <Header/>
+        <ScrollView onLayout={onLayoutRootView} >
+            <Image style={styles.imageStyle} source={{uri: data.imagem}}/>
             <View style={styles.conteinerInfo}>
               <View style={styles.conteiner}>
                 <Text style={styles.textTitle}>
-                    Restaurante da chica
+                    {data.nome}
                 </Text>
                 <Text style={styles.textSubTitle}>
-                  Procurando o restaurante mais tradicional de São 
-                  Luís? Achou: é o Cabana do Sol. É o melhor lugar 
-                  para provar a carne de sol com todos os seus acompanhamentos
+                  {data.descricao}
                 </Text>
               </View>
               <View style={styles.conteiner}>
@@ -58,7 +59,7 @@ function Cardapio () {
                     Endereço
                 </Text>
                 <Text style={styles.textSubTitle}>
-                Av. Raimundo Corrêa da Silva, 547 - Refeição no local
+                  {data.endereco}
                 </Text>
               </View>
               <View style={styles.conteiner}>
@@ -148,19 +149,19 @@ const styles = StyleSheet.create({
         gap:  28,
     },
     textTitle: {
-      fontFamily: 'InriaSerif-Regular',
+      fontFamily: 'Montserrat-Regular',
       color: '#ffffff',
       fontSize: 22,
     },
     textSubTitle: {
       fontFamily: 'Montserrat-Regular',
       color: '#ffffff',
-      fontSize: 14,
+      fontSize: 16,
     },
     textTiltePrimary: {
-      fontFamily: 'InriaSerif-Bold',
+      fontFamily: 'Montserrat-SemiBold',
       color: '#ffffff',
-      fontSize: 16,
+      fontSize: 14,
     },
     conteiner: {
       gap: 6,

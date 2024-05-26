@@ -2,6 +2,18 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const url = 'https://yumyelp-api.onrender.com'
 
+export async function getRestaurantes () {
+    try {
+        
+        const response = await axios.get(url+'/rest/')
+
+        return response.data
+    } catch (error) {
+        console.error("Error during API call:", error);
+        throw error;
+    }
+}
+
 async function createUser (nome, email, senha) {
     try {
 
@@ -79,6 +91,16 @@ export async function loginUser (email, senha) {
 
 
         return response
+    } catch (error) {
+        console.error("Error during API call:", error);
+        throw error;
+    }
+}
+export async function getById (id) {
+    try {
+        const response = await axios.get(`${url}/rest/${id}`)
+
+        return response.data
     } catch (error) {
         console.error("Error during API call:", error);
         throw error;

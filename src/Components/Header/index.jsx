@@ -26,11 +26,11 @@ const Header = () =>{
     style={{
         backgroundColor: '#681A1A',
         width: "100%",
-        height: 80,
+        height: 70,
         display: 'flex',
         justifyContent: 'center',
         paddingHorizontal: 24,
-        paddingTop: 10,
+        paddingTop: 0,
     }}
     >
       <TouchableOpacity onPress={handlePress}>
