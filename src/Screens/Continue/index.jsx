@@ -32,7 +32,7 @@ function ContinueWith () {
     return (
         <DimissKeyBoard>
             <View style={style.screenConteiner}>
-            <TouchableOpacity 
+            {/* <TouchableOpacity 
                         onPress={() => navigation.goBack()}
                         style={{
                             width: '100%',
@@ -50,17 +50,15 @@ function ContinueWith () {
                             fontSize: 18,
                             marginLeft: 20
                         }}>Voltar</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
             <Text style={style.titleLogo}>YumYelp</Text>
             <View style={style.buttonsConteiner}>
                 <View style={style.conteinerFormContent}>
                     <View 
                         style={{
                             display: 'flex',
-                            gap: 14,
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            height: '50%'
+                            height: '20%',
+                            alignItems:'center',
                         }}
                     >
                     <Text style={style.textSecundaryStyle}>Continue Como:</Text>
@@ -72,7 +70,7 @@ function ContinueWith () {
                     }}>
                         <View style={style.label}>
                             <View style={{width: '100%', }}>
-                                <Text style={{color: 'white'}}>Compartilhe com nossos usuários sua imagem e seus pratos </Text>    
+                                <Text style={{color: 'white',fontFamily:'Montserrat',fontSize:15}}>Cadastre e exiba seu restaunte para todos</Text>    
                             </View>
                             <TouchableOpacity 
                                 onPress={handleRestaurante}
@@ -86,7 +84,7 @@ function ContinueWith () {
                                     flexDirection: 'row'
                                 }}>
                                     <Ionicons name="restaurant" size={22} color="white"/>
-                                    <Text style={{color: 'white',  width: '60%', textAlign: 'center'}}> Restaurante</Text>
+                                    <Text style={{color: 'white',  width: '60%', textAlign: 'center',fontSize:17}}> Restaurante</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -94,7 +92,7 @@ function ContinueWith () {
                         <View style={style.label}>
 
                             <View style={{width: '100%', }}>
-                                <Text style={{color: 'white'}}>Navegue nesse mar de restaurante esperando por você</Text>    
+                                <Text style={{color: 'white',fontFamily:'Montserrat',fontSize:15}}>Navegue na plataforma e descubra restaurantes incríveis</Text>    
                             </View>
                             <TouchableOpacity 
                                 onPress={handleUsuario}
@@ -107,14 +105,16 @@ function ContinueWith () {
                                     width: '100%',
                                     flexDirection: 'row'
                                 }}>
-                                    <Text style={{color: 'white', width: '60%', textAlign: 'center'}}>Usuario</Text>
-                                    <AntDesign name="right" size={22} color="white" />
+                                    <AntDesign name="user" size={22} color="white" />
+                                    <Text style={{color: 'white', width: '60%', textAlign: 'center',fontSize:17}}>Usuário</Text>
                                 </View>
                             </TouchableOpacity>
-                            </View>
-                            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                                <Text>já possuo conta</Text>
 
+                        </View>
+                    
+                            <TouchableOpacity style={{flexDirection:'row'}} onPress={() => navigation.navigate('Login')}>
+                               <AntDesign name="left" size={22} color="white" />
+                                <Text style={{color:'#fff',fontSize:15,marginLeft:10}}>já possuo conta</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -132,21 +132,19 @@ const style = StyleSheet.create({
         fontFamily: 'Italianno-Regular',
         color: 'white',
         textAlign: 'center',
-        fontSize: 52,
-        marginBottom: 50,
+        fontSize: 50,
+        margin:20 ,
     },
     screenConteiner: {
-        padding: 24,
+        flex:1,
         backgroundColor: '#1F1C1C',
-        flex: 1,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
     },
     buttonsConteiner: {
         backgroundColor: '#681A1A',
         height: 600,
-        width: '100%',
+        width: '90%',
         borderRadius: 14,
         display: 'flex',
         alignItems: 'center',
@@ -162,7 +160,7 @@ const style = StyleSheet.create({
     },
     inputStyle: {
       height: 50,
-      fontSize: 16,
+      fontSize: 15,
       width: '85%',
       backgroundColor: 'white',
       padding: 10,
@@ -172,7 +170,6 @@ const style = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
         padding: 18,
-        fontSize: 24,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -192,21 +189,19 @@ const style = StyleSheet.create({
         gap: 12,
     },
     textSecundaryStyle: {
-        fontFamily: 'RobotoSerif-Medium',
+        fontFamily: 'Montaga',
         color: 'white',
-        fontSize: 22,
+        fontSize: 28,
     },
-    textDefault:{
-        fontFamily: 'Montserrat-Regular',
-        color: 'white',
-        fontSize: 18,
-    },
+    // textDefault:{
+    //     fontFamily: 'Montserrat-Regular',
+    //     color: 'white',
+    //     fontSize: 18,
+    // },
     conteinerFormContent: {
-        height: '60%',
+        height: '80%',
         width: '90%',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-around',
         paddingHorizontal: 14, 
     }
 })

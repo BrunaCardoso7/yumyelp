@@ -3,10 +3,12 @@ import {
     Image,
     StyleSheet,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Text,
   } from 'react-native';
-  import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
   import { useNavigation } from '@react-navigation/native';
+  import AntDesign from '@expo/vector-icons/AntDesign';
+
   
   
   const Icones = () =>{
@@ -17,9 +19,11 @@ import {
   
     return(
       <View style={styles.container}>
-         <View style={styles.retornar} >
-            <FontAwesome5 name="angle-double-left" size={44} color="white" onPress={handlePress} />
-          </View>
+           <TouchableOpacity style={styles.retornar} onPress={handlePress}>
+              <AntDesign name="doubleleft" size={38} color="white" />
+              <Text style={{color:"#fff",fontSize:15,marginLeft:5}}>Voltar</Text>
+            </TouchableOpacity>
+      
           <ScrollView style={styles.conjunto}>
           <View style={styles.gradeIcons}>
                 <TouchableOpacity style={styles.icon}>
@@ -86,23 +90,22 @@ import {
     container:{
       flex:1,
       backgroundColor:'#303030',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent:  'center',
+      
     },
     gradeIcons:{
        flexDirection:'row'
     },
     conjunto:{
-    //   alignItems:'center'
+      width:'100%',
+      marginHorizontal:'5%'
     },
     
     retornar:{
       marginTop:40,
       marginLeft:15,
-      display: 'flex',
-      justifyContent: 'flex-start',
-      width:40,
+      alignItems:'center',
+      width:60,
+      flexDirection:'row',
      },
   
     icon:{

@@ -97,7 +97,7 @@ function CardapioRegister () {
           height: '80%',
           paddingVertical: 0
         }}>
-          <TouchableOpacity 
+          {/* <TouchableOpacity 
             onPress={() => navigation.navigate('Continue')}
             style={{
                 width: '100%',
@@ -115,11 +115,11 @@ function CardapioRegister () {
                 fontSize: 18,
                 marginLeft: 20
             }}>Voltar</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <Text style={{
             color: 'white',
             fontFamily: 'Italianno-Regular',
-            fontSize: 42,
+            fontSize: 50,
           }}>YumYelp</Text>
           <Text style={{
             color: 'white',
@@ -236,7 +236,7 @@ function CardapioRegister () {
                   </View>
                 </View>
                 <TouchableOpacity style={{
-                    backgroundColor: '#681A1A',
+                    backgroundColor: '#C61515',
                     width: '90%',
                     alignItems: 'center',
                     borderRadius: 14,

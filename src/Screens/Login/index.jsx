@@ -47,7 +47,6 @@ const Login = () => {
         }
     }
 
-
     useEffect(() => {
         onLayoutRootView(); 
     }, [onLayoutRootView]);
@@ -79,18 +78,25 @@ const Login = () => {
                             placeholder='Digite seu senha'
                             onChangeText={setSenha}
                         />
-                        <TouchableOpacity  onPress={() => navigation.navigate('Continue')}>
-                            <Text style={styles.esqpass}>Criar conta</Text>
-                        </TouchableOpacity>
+                            <View style={styles.localEsqSenhaOpacity}>
+                                <TouchableOpacity style={styles.localEsqSenha}>
+                                    <Text style={styles.esqpass}>Esqueceu a senha?</Text>
+                                </TouchableOpacity>
+                            </View>
                     </View>
                     <View style={{ width:'100%', alignItems:'center'}}>
                         <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                            <Text style={{color:'#fff', fontSize: 18}}>Entrar</Text>
+                            <Text style={{color:'#fff', fontSize: 18,fontFamily:'Montserrat'}}>Entrar</Text>
                         </TouchableOpacity>
-                            <TouchableOpacity >
-                                <Text style={styles.esqpass}>Esqueceu a senha?</Text>
-                            </TouchableOpacity>
                     </View>
+                    <View style={{flexDirection:'row',width:320}}>
+                        <Text style={styles.esqpass2}>Não tem uma conta?</Text>
+                        
+                        <TouchableOpacity style={{}} onPress={() => navigation.navigate('Continue')}>
+                            <Text style={styles.esqpass3}> Cadastre-se</Text>
+                        </TouchableOpacity>
+                    </View>
+
                     <View style={styles.icones}>
                         <TouchableOpacity>
                             <FontAwesome5 name="google-plus" size={38} color="white" />
@@ -110,13 +116,14 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'#1F1C1C',
         alignItems:'center',
-        justifyContent: 'space-evenly'
+        // justifyContent: 'space-evenly'
     },
     logo:{
         color:'#fff',
         fontSize:50,
         fontFamily:'Italianno',
-        textAlign:'center'
+        textAlign:'center',
+        margin:20
     },
     dalogo:{
         width:'100%',
@@ -141,6 +148,7 @@ const styles = StyleSheet.create({
     label:{
         color:'#fff',
         margin:5,
+        fontFamily:'Montserrat'
     },
     input:{
         height: 50,
@@ -163,14 +171,32 @@ const styles = StyleSheet.create({
     esqpass:{
         color:'#fff',
         width: '100%',
-        textAlign: 'center',
-        paddingTop: 10
+        paddingTop: 10,
+        fontFamily:'Montserrat',
+        textAlign:'center',
+    },
+    esqpass2:{
+        color:'#fff',
+        paddingTop: 18,
+        marginLeft:30,
+        fontFamily:'Montserrat',
+        fontSize:15,
+    },
+    esqpass3:{
+        color:'red',
+        paddingTop: 18,
+        fontFamily:'Montserrat',
+        fontSize:15,
+    },
+    localEsqSenhaOpacity:{
+        alignItems:'flex-end',
+    },
+    localEsqSenha:{
+        width:150,
     },
     button:{
         alignItems: 'center',
-        backgroundColor: '#DDDDDD',
         padding: 10,
-        fontSize: 28,
         width: '80%',
         borderRadius:24,
         color: 'white',

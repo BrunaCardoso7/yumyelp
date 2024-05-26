@@ -53,7 +53,7 @@ function Register({route}) {
     return (
         <DimissKeyBoard>
                 <View style={style.screenConteiner}>
-                    <TouchableOpacity 
+                    {/* <TouchableOpacity 
                         onPress={() => navigation.goBack()}
                         style={{
                             width: '100%',
@@ -71,7 +71,7 @@ function Register({route}) {
                             fontSize: 18,
                             marginLeft: 20
                         }}>Voltar</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
                 <Text style={style.titleLogo}>YumYelp</Text>
                 <View style={style.formConteiner}>
@@ -79,10 +79,9 @@ function Register({route}) {
                     <View 
                         style={{
                             display: 'flex',
-                            gap: 14,
                             alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '100%'
+                            justifyContent:'center',
+                            height:'20%'
                         }}
                     >
                         <Text style={style.textSecundaryStyle}>Cadastro</Text>
@@ -90,39 +89,39 @@ function Register({route}) {
                     <View style={style.inputConteiner}>
                         <View style={style.label}>
                             <View style={{width: '80%', }}>
-                                <Text style={{color: 'white'}}>Usuario</Text>    
+                                <Text style={{color: 'white',fontFamily:'Montserrat'}}>Usuário</Text>    
                             </View>
                         <TextInput
                             style={style.inputStyle}
-                            placeholder='nome de usuario'
+                            placeholder='Digite seu nome de usuario'
                               onChangeText={setNome}
                         />
                         </View>
                     <View style={style.label}>
                     <View style={{width: '80%', }}>
-                            <Text style={{color: 'white'}}>email</Text>
+                            <Text style={{color: 'white',fontFamily:'Montserrat'}}>E-mail</Text>
                     </View>
                     <TextInput
                             style={style.inputStyle}
-                            placeholder='email'
+                            placeholder='Digite seu e-mail'
                           onChangeText={setEmail}
                         />
                     </View>
                     <View style={style.label}>
                     <View style={{width: '80%', }}>
-                            <Text style={{color: 'white'}}>senha</Text>
+                            <Text style={{color: 'white',fontFamily:'Montserrat'}}>Senha</Text>
                     </View>
                         <TextInput
                             style={style.inputStyle}
-                            placeholder='senha'
+                            placeholder='Digite sua senha'
                           onChangeText={setSenha}
                         />
-                        <TouchableOpacity  onPress={() => navigation.navigate('Login')}>
+                        {/* <TouchableOpacity  onPress={() => navigation.navigate('Login')}>
                             <Text style={style.esqpass}>Já possou uma conta</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
                     <TouchableOpacity style={style.button} onPress={hadleRegister}>
-                        <Text style={{color:'#fff', fontSize: 18}}>Criar conta</Text>
+                        <Text style={{color:'#fff', fontSize: 18,fontFamily:'Montserrat'}}>Criar conta</Text>
                     </TouchableOpacity>
                     </View>
                 </View>
@@ -133,37 +132,33 @@ function Register({route}) {
 }
 
 const style = StyleSheet.create({
-    conteiner: {
-        flex: 1,
-    },
+    
     titleLogo: {
         color:'#fff',
+        margin:20,
         fontSize:50,
         fontFamily:'Italianno',
         textAlign:'center'
     },
     screenConteiner: {
-        padding: 24,
         backgroundColor: '#1F1C1C',
         flex: 1,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
     },
-    esqpass:{
-        color:'#fff',
-        width: '100%',
-        textAlign: 'center',
-        paddingTop: 10
-    },
+    // esqpass:{
+    //     color:'#fff',
+    //     width: '100%',
+    //     textAlign: 'center',
+    //     paddingTop: 10
+    // },
     formConteiner: {
         backgroundColor: '#681A1A',
         height: 600,
-        width: '100%',
+        width: '90%',
         borderRadius: 14,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-around'
     },
     inputConteiner: {
         display: 'flex',
@@ -208,7 +203,6 @@ const style = StyleSheet.create({
         fontSize: 18,
     },
     conteinerFormContent: {
-        paddingVertical: 20,
         height: '90%',
         width: '100%',
         display: 'flex',

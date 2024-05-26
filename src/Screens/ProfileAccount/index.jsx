@@ -7,6 +7,7 @@ import {
     import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
     import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
     import {useEffect} from 'react'; 
+    import AntDesign from '@expo/vector-icons/AntDesign';
     import { useNavigation } from '@react-navigation/native';
     
     const Conta = () => {
@@ -31,13 +32,15 @@ import {
     
       return(
         <View onLayout={onLayoutRootView} style={styles.container}>
-            <View style={styles.retornar} >
-              <FontAwesome5 name="angle-double-left" size={44} color="white" onPress={Return} />
-            </View>
+
+            <TouchableOpacity style={styles.retornar} onPress={Return}>
+              <AntDesign name="doubleleft" size={38} color="white" />
+              <Text style={{color:"#fff",fontSize:15,marginLeft:5}}>Voltar</Text>
+            </TouchableOpacity>
     
             <View style={styles.selectIcon}>
                 <TouchableOpacity style={styles.iconConta} onPress={IconEdit}>
-                    <FontAwesome5 name="image" size={24} color="black" />
+                    <FontAwesome5 name="image" size={28} color="black" />
                 </TouchableOpacity>
                 <Text style={styles.textPerfil}>Selecione um icone para o seu perfil</Text>
             </View>
@@ -84,12 +87,15 @@ import {
     const styles =StyleSheet.create({
       container:{
         flex:1,
-        backgroundColor:'#303030',
+        backgroundColor:'#1F1C1C',
       },
       retornar:{
         marginTop:40,
         marginLeft:15,
-        width:40,
+        marginBottom:20,
+        width:60,
+        flexDirection:'row',
+        alignItems:'center',
       },
     
       selectIcon:{
@@ -126,9 +132,7 @@ import {
         justifyContent:'space-evenly',
         backgroundColor:'#3D3D3D',
       },
-      infos:{
     
-      },
       edit:{
         justifyContent:'space-between',
         flexDirection:'row',

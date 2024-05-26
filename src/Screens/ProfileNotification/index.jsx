@@ -7,6 +7,7 @@ import {
     import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
     import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
     import {useEffect} from 'react'; 
+    import AntDesign from '@expo/vector-icons/AntDesign';
     import { useNavigation } from '@react-navigation/native';
     
     
@@ -28,9 +29,12 @@ import {
     
       return(
         <View onLayout={onLayoutRootView} style={styles.container}>
-              <View style={styles.retornar} >
-                <FontAwesome5 name="angle-double-left" size={44} color="white" onPress={Return} />
-              </View>
+            
+            <TouchableOpacity style={styles.retornar} onPress={Return}>
+              <AntDesign name="doubleleft" size={38} color="white" />
+              <Text style={{color:"#fff",fontSize:15,marginLeft:5}}>Voltar</Text>
+            </TouchableOpacity>
+
             <View style={styles.config}>
                 <View style={{gap:10}}>
                   <Text style={styles.letras}>Notificações</Text>
@@ -53,7 +57,7 @@ import {
     const styles =StyleSheet.create({
       container:{
         flex:1,
-        backgroundColor:'#303030',
+        backgroundColor:'#1F1C1C',
       },
     
       config:{
@@ -64,7 +68,9 @@ import {
       retornar:{
         marginTop:40,
         marginLeft:15,
-        width:40,
+        width:60,
+        flexDirection:'row',
+        alignItems:'center',
       },
     
     
