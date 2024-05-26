@@ -5,7 +5,7 @@ import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import * as SplashScreen from 'expo-splash-screen';
 import { useNavigation } from "@react-navigation/native";
-import { useRoute } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function Prato({ item }) {
   function formatDate(dateString) {
@@ -18,6 +18,7 @@ function Prato({ item }) {
 
   return (
     <TouchableOpacity style={{ width: '100%', height: 150, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 50, paddingHorizontal: 32 }}>
+     
       <Image style={{ height: 120, width: 120, borderRadius: 24 }} source={{ uri: item.imagem }} />
       <View style={{ width: '100%', height: '65%', justifyContent: 'space-between' }}>
         <View>
@@ -41,19 +42,23 @@ function PratosView() {
   const navigation = useNavigation();
   const { onLayoutRootView, fontsLoaded, fontError } = UseFontsCostumize();
   const [data, setData] = useState([]);
-
-  useEffect(() => {
+  
     const getPratos = async () => {
       try {
+        const rest_id = await AsyncStorage.getItem("rest_id")
         const produtos = await getAllProdutos();
-        setData(produtos.produtos);
+        console.log(rest_id)
+          setData(produtos.produtos)
+      
       } catch (error) {
         console.error(error);
       }
     };
 
-    getPratos();
-  }, [data]);
+  const logOut = async () => {
+    await AsyncStorage.removeItem("rest_id")
+    navigation.navigate('Login')
+  }
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
@@ -64,9 +69,36 @@ function PratosView() {
   if (!fontsLoaded && !fontError) {
     return null;
   }
+  useEffect(()=>{
+    getPratos()
+  }, [])
   console.log(data)
   return (
     <View onLayout={onLayoutRootView} style={{ backgroundColor: '#1F1C1C', flex: 1, alignItems: 'center', width: '100%', height: '80%', paddingVertical: 20, gap: 32 }}>
+       <View style={{
+          backgroundColor: '#1F1C1C',
+          flex:1,
+          alignItems: 'center',
+          justifyContent: 'space-around',
+          width: '100%',
+          height: '80%',
+          paddingVertical: 0
+        }}>
+          <TouchableOpacity 
+          onPress={logOut}
+            style={{
+                // width: '100%',
+                position: 'absolute',
+                top:0,
+                right: 14,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center'
+            }}
+        >
+          <AntDesign name="logout" size={24} color="white" />
+          </TouchableOpacity>
+        </View>
       <View style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
         <Text style={{ color: 'white', fontFamily: 'Italianno-Regular', fontSize: 45 }}>YumYelp</Text>
         <Text style={{ color: 'white', fontFamily: 'Montserrat-Light', fontSize: 20 }}>Seu Cardápio</Text>

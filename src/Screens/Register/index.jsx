@@ -30,9 +30,9 @@ function Register({route}) {
             console.log("response: "+response.data.user.id)
             Alert.alert('Sucesso', 'Usuário criado com sucesso');
             await AsyncStorage.setItem("userId",response.data.user.id)
-            
+
             if( data === 'admin') {
-                navigation.navigate('Rest')
+                navigation.navigate('CardRegister')
             } else if ( data === 'user') {
                 navigation.navigate('Main')
             }

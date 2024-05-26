@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 function RestauranteStack() {
   return (
-    <Stack.Navigator initialRouteName="CardRegister" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="PratosView" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Cardapio" component={Cardapio} />
       <Stack.Screen name="CardRegister" component={CardapioRegister} />
       <Stack.Screen name="PratosView" component={PratosView} />

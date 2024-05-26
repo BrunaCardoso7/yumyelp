@@ -72,7 +72,7 @@ function CardapioRegister () {
         console.log(response.data.retaurante.id)
         await AsyncStorage.setItem("rest_id", response.data.retaurante.id)
 
-        navigation.navigate('PratosView')
+        navigation.navigate('Rest')
       } catch (error) {
         console.error('Error during API call:', error);
       }

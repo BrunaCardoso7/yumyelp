@@ -15,11 +15,12 @@ function RouterPages (token) {
     
     console.log(token)
     return(
-        <Stack.Navigator initialRouteName={"Rest"} screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName={"Login"} screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login}/>
             <Stack.Screen name="Register" component={Register}/>
             <Stack.Screen name="Continue" component={ContinueWith}/>
             <Stack.Screen name="Cardapio" component={Cardapio}/>
+            <Stack.Screen name="CardRegister" component={CardapioRegister} />
             <Stack.Screen name="Rest" component={RestauranteStack}/>
             <Stack.Screen name="Main" component={MyTabs}/>
         </Stack.Navigator>
