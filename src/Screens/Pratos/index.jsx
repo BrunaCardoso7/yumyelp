@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, TouchableOpacity, FlatList, Image } from "react-native";
-import { getAllProdutos } from "../../api";
+import { getAllProdutos, getRest } from "../../api";
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import * as SplashScreen from 'expo-splash-screen';
@@ -45,11 +45,27 @@ function PratosView() {
   
     const getPratos = async () => {
       try {
-        const rest_id = await AsyncStorage.getItem("rest_id")
-        const produtos = await getAllProdutos();
-        console.log(rest_id)
-          setData(produtos.produtos)
-      
+        const user_id = await AsyncStorage.getItem("user_id")
+
+        const restaurante = await getRest(user_id)
+
+        console.log(restaurante.data.restInfo.id)
+
+        const rest_id = restaurante.data.restInfo.id
+
+        await AsyncStorage.setItem("rest_id", rest_id)
+
+        const produto = await getAllProdutos();
+        setData(produto.produtos)
+
+        const produtos = produto.produtos
+        const produtoArray = Object.values(produtos)
+        const filteredProdutos = produtoArray.filter((produto) => produto.rest_id === rest_id);
+
+        console.log(filteredProdutos)
+
+        setData(filteredProdutos)
+        
       } catch (error) {
         console.error(error);
       }
@@ -65,7 +81,7 @@ function PratosView() {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
-
+  
   if (!fontsLoaded && !fontError) {
     return null;
   }

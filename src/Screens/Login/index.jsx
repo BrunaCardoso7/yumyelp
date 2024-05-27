@@ -12,6 +12,7 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import DimissKeyBoard from '../../config/DimissKeyBoard';
 import { useNavigation } from '@react-navigation/native';
 import { getUserById, loginUser } from '../../api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
 
@@ -31,8 +32,11 @@ const Login = () => {
             const response = await loginUser(email, senha)
             
             const tipo = response.user.tipo
+            const user_id = response.user.id
 
-            console.log(tipo)
+            await AsyncStorage.setItem("user_id", user_id)
+
+            console.log("usuário logado com id: ",user_id)
 
             Alert.alert('Sucesso', 'Usuário logado com sucesso');
 

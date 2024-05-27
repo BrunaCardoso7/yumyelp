@@ -10,12 +10,10 @@ import RestauranteStack from "./RestauranteRouter";
 const Stack = createStackNavigator()
 
 function RouterPages (token) {
-
-    // login, id logado verificar se o tipo dele é admin ou user
     
     console.log(token)
     return(
-        <Stack.Navigator initialRouteName={token ? "Main" : "Login"} screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName={"Login"} screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login}/>
             <Stack.Screen name="Register" component={Register}/>
             <Stack.Screen name="Continue" component={ContinueWith}/>

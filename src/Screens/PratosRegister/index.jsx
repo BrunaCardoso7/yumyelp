@@ -63,6 +63,7 @@ function PratoRegister() {
         if (response.status === 200) {
           console.log('Requisição bem-sucedida!');
           Alert.alert('Success', 'Restaurante criado com sucesso!');
+          navigation.navigate('PratosView')
         } else {
           console.log('Status da resposta:', response.status);
           Alert.alert('Error', `Erro na criação do restaurante: ${response.status}`);
