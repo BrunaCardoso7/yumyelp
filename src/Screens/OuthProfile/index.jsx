@@ -36,7 +36,9 @@ const Perfil =  () =>{
                    <Image style={styles.imagePerfil} source={require('../../../assets/images/imagesIcons/dgsgt03-7da011d4-e515-4664-ae67-6d4a498917d3.jpg')}/>
                 </View>
                 <Text style={styles.nomePerfil} >Leozin das panela</Text>
-                <FontAwesome5 style={styles.gear} name="cog" size={25} color="white" onPress={gear} />
+                <TouchableOpacity style={styles.fundoGear} onPress={gear}>
+                   <FontAwesome5 style={styles.gear} name="cog" size={25} color="white" />
+                </TouchableOpacity>
             </View>
              <View style={styles.opcoesPerfil}>
                 <TouchableOpacity style={styles.primeiraOpcao}>
@@ -63,18 +65,23 @@ const Perfil =  () =>{
   const styles = StyleSheet.create({
       container:{
         flex:1,
-        backgroundColor:'#303030',
+        backgroundColor:'#1F1C1C',
       },
   
       infos:{
         flexDirection:'row',
       },
-  
-      gear:{  
-        position:'relative',
-        right:15,
+      fundoGear:{
+        backgroundColor:'rgba(0,0,0,0.3)',
+        width:40,
+        height:40,
+        right:25,
         top:7,
-       },
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:100,
+      },
+
       perfil:{
         width:130,
         height:130,

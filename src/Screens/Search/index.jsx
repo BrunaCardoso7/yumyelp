@@ -50,7 +50,7 @@ export default Search
 const styles=StyleSheet.create({
     container:{
       flex:1,
-      backgroundColor:'#303030',
+      backgroundColor:'#1F1C1C',
     },
     busca:{
       backgroundColor: '#D9D9D9',

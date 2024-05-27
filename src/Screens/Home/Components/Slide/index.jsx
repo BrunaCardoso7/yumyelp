@@ -20,8 +20,8 @@ const DATA = [
     {
     id:'01',
     images:{
-    uri1: imageSources.image1,
-    uri2: imageSources.image2,
+        uri1: imageSources.image1,
+        uri2: imageSources.image2,
     },
     title:'Colossus',
     desc:'um restaurante de comidas comiveis'
@@ -29,8 +29,8 @@ const DATA = [
     {
     id:'02',
     images:{
-    uri1: imageSources.image1,
-    uri2: imageSources.image2,
+        uri1: imageSources.image1,
+        uri2: imageSources.image2,
     },
     title:'Colossus',
     desc:'um restaurante de comidas comiveis'
@@ -38,8 +38,8 @@ const DATA = [
     {
     id:'03',
     images:{
-    uri1: imageSources.image1,
-    uri2: imageSources.image2,
+        uri1: imageSources.image1,
+        uri2: imageSources.image2,
     },
     title:'Colossus',
     desc:'um restaurante de comidas comiveis'
@@ -48,14 +48,16 @@ const DATA = [
 
 const List = () => {
 
-    let screenWidth = Dimensions.get("window").width
+    let screenWidth = Dimensions.get("window").width //obtem o tamanho da tela em que está sendo usado
     let [activeIndex,setActiveIndex] = useState(0);
     const flatListRef = useRef()
-
+    
+    //usado para mover o slide em intervalos de tempo
+    //e p if é usado para fazer voltar ao primeiro indice
         useEffect (() => {
         let interval = setInterval(() => {
             if (activeIndex === DATA.length - 1) {
-                flatListRef.current.scrollToIndex({
+                flatListRef.current.scrollToIndex({ // faz com a lista va para o indice esperado
                     index: 0,
                     animation: true,
                 });
@@ -77,27 +79,28 @@ const List = () => {
     });
 
     const handScroll = (event) => {
-            const scrollPosition = event.nativeEvent.contentOffset.x;
-        // console.log({scrollPosition})
+        const scrollPosition = event.nativeEvent.contentOffset.x;
         const index =Math.round(scrollPosition/screenWidth)
-        // console.log({index})
         setActiveIndex(index)
     }
+
+    //Quando o slide for selecionado o indicador muda de cor
     const localCarroussel = () =>{
         return DATA.map( (dot , index) => {
             if(activeIndex === index){
             return(
-            <View style={styles.indicadorS}>
-            </View>
+                <View style={styles.indicadorS}>
+                </View>
             )
             } else{
             return(
-            <View key={index} style={styles.indicador}></View>
+                <View key={index} style={styles.indicador}></View>
             )
             }
         
         });
     }
+
     return(
         <View>
         <FlatList
@@ -156,29 +159,29 @@ const styles=StyleSheet.create({
             height:'100%',
         },
         indicador:{
-        width:10,
-        height:10,
-        borderRadius:5,
-        backgroundColor:'rgba(192,192,192,0.4)',
+            width:10,
+            height:10,
+            borderRadius:5,
+            backgroundColor:'rgba(192,192,192,0.4)',
         },
         indicadorS:{
-        width:12,
-        height:12,
-        borderRadius:7,
-        backgroundColor:'rgba(255,0,0,0.4)',
+            width:12,
+            height:12,
+            borderRadius:7,
+            backgroundColor:'rgba(255,0,0,0.4)',
         },
         indicadorMove:{
-        flexDirection:'row',
-        justifyContent:'flex-end',
-        gap:3,
-        marginRight:10,
-        bottom:20
+            flexDirection:'row',
+            justifyContent:'flex-end',
+            gap:3,
+            marginRight:10,
+            bottom:20
         },
         minibox:{
-        flexDirection:'row',
-        position:'absolute',
-        top:'15%',
-        left:30,
+            flexDirection:'row',
+            position:'absolute',
+            top:'15%',
+            left:30,
         },
     
         image2:{

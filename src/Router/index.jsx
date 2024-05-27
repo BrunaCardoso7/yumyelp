@@ -1,8 +1,9 @@
+//Tab-Sreen
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Ionicons} from '@expo/vector-icons';
 import Home from '../Screens/Home/index'
 import Search from '../Screens/Search/index';
-import User from '../Screens/Users/index';
+import User from '../Screens/Configs/index';
 import Conta from '../Screens/ProfileAccount/index';
 import Seguranca from '../Screens/ProfileSecurity/index'
 import Notificacao from '../Screens/ProfileNotification/index'
