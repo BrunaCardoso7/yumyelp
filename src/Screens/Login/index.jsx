@@ -178,22 +178,24 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         fontFamily:'Montserrat',
         textAlign:'center',
+        fontSize: 12
     },
     esqpass2:{
         color:'#fff',
         paddingTop: 18,
         marginLeft:30,
         fontFamily:'Montserrat',
-        fontSize:15,
+        fontSize:14,
     },
     esqpass3:{
         color:'red',
         paddingTop: 18,
         fontFamily:'Montserrat',
-        fontSize:15,
+        fontSize:16,
     },
     localEsqSenhaOpacity:{
         alignItems:'flex-end',
+        width: '100%'
     },
     localEsqSenha:{
         width:150,

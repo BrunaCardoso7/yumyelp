@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import { Text, View, TouchableOpacity, FlatList, Image } from "react-native";
 import { getAllProdutos, getRest } from "../../api";
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import * as SplashScreen from 'expo-splash-screen';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function Prato({ item }) {
@@ -85,9 +85,11 @@ function PratosView() {
   if (!fontsLoaded && !fontError) {
     return null;
   }
-  useEffect(()=>{
-    getPratos()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      getPratos();
+    }, [])
+  );
   console.log(data)
   return (
     <View onLayout={onLayoutRootView} style={{ backgroundColor: '#1F1C1C', flex: 1, alignItems: 'center', width: '100%', height: '80%', paddingVertical: 20, gap: 32 }}>
@@ -96,6 +98,7 @@ function PratosView() {
           flex:1,
           alignItems: 'center',
           justifyContent: 'space-around',
+          flexDirection: 'row',
           width: '100%',
           height: '80%',
           paddingVertical: 0
@@ -103,17 +106,31 @@ function PratosView() {
           <TouchableOpacity 
           onPress={logOut}
             style={{
-                // width: '100%',
+              position: 'absolute',
+              top:0,
+              left: 14,
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center'
+              
+            }}
+        >
+          <AntDesign name="logout" size={24} color="white" />
+          </TouchableOpacity>
+            <TouchableOpacity style={{
                 position: 'absolute',
                 top:0,
                 right: 14,
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center'
-            }}
-        >
-          <AntDesign name="logout" size={24} color="white" />
-          </TouchableOpacity>
+            }}>
+              <Image style={{
+                width: 40,
+                height: 40,
+                borderRadius: 100,
+              }} source={require('../../../assets/user-profile.jpg')}/>
+            </TouchableOpacity>
         </View>
       <View style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
         <Text style={{ color: 'white', fontFamily: 'Italianno-Regular', fontSize: 45 }}>YumYelp</Text>

@@ -1,11 +1,8 @@
 import {View, Image,StyleSheet, Text, ScrollView, TextInput, Dimensions, FlatList} from 'react-native'
-import { useCallback, useEffect, useState} from 'react'; 
-import { useFonts } from 'expo-font';
+import {useEffect, useState} from 'react'; 
 import * as SplashScreen from 'expo-splash-screen';
 import { AntDesign } from '@expo/vector-icons';
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
-// import { FlatList } from 'react-native-gesture-handler';
-import { produtoData } from '../../mocks/produto-mock';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Header from '../../Components/Header';
 import { getAllProdutos } from '../../api';
@@ -79,6 +76,7 @@ function Comenter ({nome, comentario}) {
     </>
   )
 }
+
 const datas = [
   { id: 1, nome: "Ana Lucia Cristal", comentario: "Ótimo atendimento e comida deliciosa!" },
   { id: 2,nome: "Bruno Silva", comentario: "Ambiente agradável, recomendo a visita." },
@@ -130,7 +128,18 @@ function Cardapio ({ route }) {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Header/>
         <ScrollView onLayout={onLayoutRootView} >
-            <Image style={styles.imageStyle} source={{uri: data.imagem}}/>
+            <View style={styles.imageStyle}>
+              <Image style={styles.imageStyle} source={{uri: data.imagem}}/>  
+              <Text style={{
+                zIndex: 999,
+                position: 'absolute',
+                bottom:0,
+                right: 10,
+                fontSize:24,
+                color: 'white'
+              }}><AntDesign name="star" size={24} color="yellow" />4.1</Text>
+              <View style={styles.overlay} />
+            </View>
             <View style={styles.conteinerInfo}>
               <View style={styles.conteiner}>
                 <Text style={styles.textTitle}>
@@ -160,7 +169,6 @@ function Cardapio ({ route }) {
                       renderItem={({item}) => <Produto imagem={item.imagem} nome={item.nome} preco={item.preco}/>}
                       keyExtractor={item => item.id}
                     />
-                     {/* <Produto imagem={item.imagem} nome={item.nome} preco={item.preco}/> */}
                   </ScrollView>
                 </View>
               </View>
@@ -217,6 +225,7 @@ const styles = StyleSheet.create({
         marginVertical: 50
     },
     imageStyle:{
+        position: 'relative',
         width: screenWidth,
         height: 230,
     },
@@ -315,7 +324,15 @@ const styles = StyleSheet.create({
       width: 80,
       height: 80,
       backgroundColor: 'white',
-    }
+    },
+    overlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    },
 })
 
 export default Cardapio

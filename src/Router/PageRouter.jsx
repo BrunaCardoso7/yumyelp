@@ -13,7 +13,7 @@ function RouterPages (token) {
     
     console.log(token)
     return(
-        <Stack.Navigator initialRouteName={"Login"} screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName={!token || token===null || token === undefined ? "Login" : "Main"} screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login}/>
             <Stack.Screen name="Register" component={Register}/>
             <Stack.Screen name="Continue" component={ContinueWith}/>

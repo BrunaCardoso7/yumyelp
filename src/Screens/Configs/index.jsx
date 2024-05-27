@@ -32,9 +32,9 @@ const User =  () =>{
     <View style={styles.container}> 
        <Header/>
        <TouchableOpacity style={styles.retornar} onPress={Return}>
-              <AntDesign name="doubleleft" size={38} color="white" />
-              <Text style={{color:"#fff",fontSize:15,marginLeft:5}}>Voltar</Text>
-            </TouchableOpacity>
+            <AntDesign name="doubleleft" size={28} color="white" />
+            <Text style={{color:"#fff",fontSize:18,marginLeft:5}}>Voltar</Text>
+        </TouchableOpacity>
 
        <View style={styles.controles}>
             <View style={styles.sequenciaComandos}>
@@ -64,8 +64,13 @@ const User =  () =>{
 
                         <View style={styles.linha}></View>
 
-                    <TouchableOpacity onPress={logout}>
-                    <Text style={styles.sair}>Sair</Text>
+                    <TouchableOpacity style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center'
+                    }} onPress={logout}>
+                      <AntDesign name="logout" size={24} color="white" />
+                      <Text style={styles.sair}>Sair</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -81,9 +86,13 @@ const styles = StyleSheet.create({
       backgroundColor:'#1F1C1C',
     },
 
-
+    controles:{
+        height: '80%',
+        marginVertical: 10
+    },  
     retornar:{
       margin:15,
+      marginVertical: 30,
       width:60,
       flexDirection:'row',
       alignItems:'center',
@@ -92,7 +101,7 @@ const styles = StyleSheet.create({
 
     sequenciaComandos:{
       flexDirection:'row',
-      backgroundColor:'#3D3D3D',
+      backgroundColor:'#343434',
       borderRadius:15,
       justifyContent:'center',
       alignItems:'center',
@@ -129,7 +138,7 @@ const styles = StyleSheet.create({
       marginRight:15,
     },
     sair:{
-      color:'red',
+      color:'#C61515',
       fontSize:17,
       fontFamily:'Montserrat',
       margin:20,
