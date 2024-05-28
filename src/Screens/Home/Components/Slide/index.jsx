@@ -132,15 +132,15 @@ const Slide = ({item}) => {
             <Image style={styles.image1} source={uri1}/>
                 <View style={styles.overlay}></View>
                 <View style={styles.minibox}>
-                    <Image style={styles.image2} source={uri2}/>
-                    <View style={styles.descricao}>
-                        <Text style={styles.titleInfo}>{item.title}</Text>
-                        <Text style={styles.textdesc}>{item.desc}</Text>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.redirect}>Saiba Mais</Text>
-                        </TouchableOpacity>
-                    </View>
+                <Image style={styles.image2} source={uri2}/>
+                <View style={styles.descricao}>
+                    <Text style={styles.titleInfo}>{item.title}</Text>
+                    <Text style={styles.textdesc}>{item.desc}</Text>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.redirect}>Saiba Mais</Text>
+                    </TouchableOpacity>
                 </View>
+            </View>
         </View>
     )
 }

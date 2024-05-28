@@ -154,6 +154,26 @@ export async function createProduto (formData, restId) {
         throw error;
     }
 }
+export async function getRest (user_id) {
+    try {
+        console.log('função foi chamada', user_id)
+        
+        const result = await axios.get('https://yumyelp-api.onrender.com/rest/get/',
+        {
+            "params": {
+                "user_id": user_id
+            },
+            "headers": {
+                "Content-Type": "multipart/form-data"
+            }
+        }
+        )
+        return result
+    } catch (error) {
+        console.error("Error during API call:", error);
+        throw error;
+    }
+}
 
 
 

@@ -30,19 +30,17 @@ const Perfil =  () =>{
   
     return(
       <View style={styles.container}>
-          <Header/>
+            <Header/>
+            <TouchableOpacity style={styles.fundoGear} onPress={gear}>
+                <FontAwesome5 style={styles.gear} name="cog" size={25} color="white" />
+            </TouchableOpacity>
             <View style={styles.infos}>
 
                 <View style={styles.perfil}>
                    <Image style={styles.imagePerfil} source={require('../../../assets/images/imagesIcons/dgsgt03-7da011d4-e515-4664-ae67-6d4a498917d3.jpg')}/>
                 </View>
 
-                <Text style={styles.nomePerfil} >Leonzinho</Text>
-                <View style={styles.localGear}>
-                    <TouchableOpacity style={styles.fundoGear} onPress={gear}>
-                      <FontAwesome5 style={styles.gear} name="cog" size={25} color="white" />
-                    </TouchableOpacity>
-                </View>
+                <Text style={styles.nomePerfil} >Leozin das panela</Text>
             </View>
              <View style={styles.opcoesPerfil}>
                 <TouchableOpacity style={styles.primeiraOpcao}>
@@ -81,15 +79,26 @@ const Perfil =  () =>{
         alignItems:'flex-end'
       },
       fundoGear:{
-        backgroundColor:'rgba(0,0,0,0.3)',
-        width:40,
+        width:'100%',
         height:40,
-        alignItems:'center',
-        justifyContent:'center',
+        right:25,
+        top:7,
+        alignItems:'flex-end',
+        justifyContent:'end',
+        borderRadius:100,
+        marginTop:10
+      },
+      gear: {
+        backgroundColor:'rgba(0,0,0,0.3)',
+        padding:10,
+        width: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        height: 50,
         borderRadius:100,
         margin:10,
       },
-
       perfil:{
         width:130,
         height:130,
@@ -110,10 +119,10 @@ const Perfil =  () =>{
       },
   
       nomePerfil:{
-        fontSize:23,
+        fontSize:22,
+        fontFamily: 'Montserrat',
         color:'#fff',
-        marginTop:50,
-        fontFamily:'Montserrat',
+        marginTop:40,
       },
   
       opcoesPerfil:{
@@ -126,7 +135,7 @@ const Perfil =  () =>{
       width:'95%',
       height:50,
       borderRadius:15,
-      backgroundColor:'#4B4B4B',
+      backgroundColor:'#343434',
       flexDirection:'row',
       justifyContent:'space-between',
       alignItems:'center',
