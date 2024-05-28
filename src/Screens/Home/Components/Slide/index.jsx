@@ -11,8 +11,13 @@ import {useEffect,useState,useRef} from 'react';
     
     
 const imageSources = {
-    image1: require('../../../../../assets/images/imagesRestaurantes/rest2.jpg'),
-    image2: require('../../../../../assets/images/imagesRestaurantes/rest3.jpg'),
+    image1: require('../../../../../assets/images/imagesRestaurantes/coco-bambu.jpg'),
+    image2: require('../../../../../assets/images/imagesRestaurantes/prato.jpg'),
+    image3: require('../../../../../assets/images/imagesRestaurantes/SantaGrelha.jpg'),
+    image4: require('../../../../../assets/images/imagesRestaurantes/caption.jpg'),
+    image5: require('../../../../../assets/images/imagesRestaurantes/ryori.jpg'),
+    image6: require('../../../../../assets/images/imagesRestaurantes/sushi.jpg'),
+
 };
 
 
@@ -23,26 +28,26 @@ const DATA = [
         uri1: imageSources.image1,
         uri2: imageSources.image2,
     },
-    title:'Colossus',
-    desc:'um restaurante de comidas comiveis'
+    title:'Coco Bambu',
+    desc:'O Coco Bambu Teresina possui uma ampla estrutura com diversidade de ambientes para que o cliente possa escolher aquele que melhor o agrada.'
     },
     {
     id:'02',
     images:{
-        uri1: imageSources.image1,
-        uri2: imageSources.image2,
+        uri1: imageSources.image3,
+        uri2: imageSources.image4,
     },
-    title:'Colossus',
-    desc:'um restaurante de comidas comiveis'
+    title:'Santa Grelha',
+    desc:'O Santa Grelha oferece um cardápio especificado em grelhados premium, preparados com perfeição na sua sagrada churrasqueira a carvão.'
     },
     {
     id:'03',
     images:{
-        uri1: imageSources.image1,
-        uri2: imageSources.image2,
+        uri1: imageSources.image5,
+        uri2: imageSources.image6,
     },
-    title:'Colossus',
-    desc:'um restaurante de comidas comiveis'
+    title:'Ryori',
+    desc:'O Restaurante Ryori é conhecido por oferecer o melhor da gastronomia oriental, com uma cozinha moderna, sofisticada e criativa.'
     }
 ];
 
@@ -120,7 +125,7 @@ const List = () => {
 }
 export default List
 
-    const Slide = ({item}) => {
+const Slide = ({item}) => {
     const { uri1, uri2 } = item.images;
     return(
         <View style={styles.info}>
@@ -146,12 +151,12 @@ export default List
 const styles=StyleSheet.create({
     info:{
         flex:1,
-        width: Dimensions.get("window").width,
-        height:200,
+            width: Dimensions.get("window").width,
+            height:230,
         },
         overlay:{
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'rgba(0, 0, 0, 0.65)',
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: 'rgba(0, 0, 0, 0.65)',
         },
         image1:{
             resizeMode:'cover',
@@ -171,58 +176,56 @@ const styles=StyleSheet.create({
             backgroundColor:'rgba(255,0,0,0.4)',
         },
         indicadorMove:{
-            flexDirection:'row',
-            justifyContent:'flex-end',
             gap:3,
             marginRight:10,
-            bottom:20
+            bottom:20,
+            flexDirection:'row',
+            justifyContent:'flex-end',
         },
         minibox:{
-            flexDirection:'row',
-            position:'absolute',
             top:'15%',
             left:30,
+            flexDirection:'row',
+            position:'absolute',
         },
     
         image2:{
-        resizeMode:'cover',
-
-        width:112,
-        height:126,
-        borderRadius:15,
+            width:122,
+            height:146,
+            borderRadius:15,
+            marginTop:10,
+            resizeMode:'cover',
         },
     
         descricao:{
-        width:'60%',
-        height:'100%',
-        
-        paddingLeft:10,
+            width:'66%',
+            height:'100%',
+            paddingLeft:10,
         },
         titleInfo:{
-        fontSize:40,
-        color:'#fff',
-        fontFamily:'InriaSerif'
+            fontSize:38,
+            color:'#fff',
+            fontFamily:'InriaSerif'
         },
+
         textdesc:{
-        flexWrap:'wrap',
-        color:'#fff',
-        fontFamily:'Montserrat',
+            flexWrap:'wrap',
+            color:'#fff',
+            fontFamily:'Montserrat',
         },
         
         button:{
-        width:142,
-        height:33,
-        marginLeft:30,
-        marginTop:10,
-    
-        backgroundColor:'#7D2121',
-        justifyContent:'center',
-        alignItems:'center',
-    
-        borderRadius:20,
-    
+            width:142,
+            height:33,
+            marginLeft:30,
+            marginTop:10,
+            borderRadius:20,
+            backgroundColor:'#7D2121',
+            justifyContent:'center',
+            alignItems:'center',
+        
         },
         redirect:{
-        color:'#fff'
+            color:'#fff'
         },
 })

@@ -92,6 +92,7 @@ const datas = [
 
 
 function Cardapio ({ route }) {
+
     const { data } = route.params;
     const [inputValue, setInputValue] = useState('')
     const [infoApi, setInfoApi] = useState()
@@ -224,11 +225,21 @@ const styles = StyleSheet.create({
         flex: 1,
         marginVertical: 50
     },
+    fundoImg:{
+      width:'100%',
+      height:231,
+    },
     imageStyle:{
         position: 'relative',
         width: screenWidth,
         height: 230,
     },
+    
+    overlay:{
+      ...StyleSheet.absoluteFillObject,
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      },
+
     conteinerInfo:{
         backgroundColor: '#1F1C1C',
         height: '100%',

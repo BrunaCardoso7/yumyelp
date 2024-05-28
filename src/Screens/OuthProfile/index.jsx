@@ -35,9 +35,11 @@ const Perfil =  () =>{
                 <FontAwesome5 style={styles.gear} name="cog" size={25} color="white" />
             </TouchableOpacity>
             <View style={styles.infos}>
+
                 <View style={styles.perfil}>
                    <Image style={styles.imagePerfil} source={require('../../../assets/images/imagesIcons/dgsgt03-7da011d4-e515-4664-ae67-6d4a498917d3.jpg')}/>
                 </View>
+
                 <Text style={styles.nomePerfil} >Leozin das panela</Text>
             </View>
              <View style={styles.opcoesPerfil}>
@@ -71,6 +73,11 @@ const Perfil =  () =>{
       infos:{
         flexDirection:'row',
       },
+      localGear:{
+        width:115,
+        height:50,
+        alignItems:'flex-end'
+      },
       fundoGear:{
         width:'100%',
         height:40,
@@ -90,14 +97,16 @@ const Perfil =  () =>{
         textAlign: 'center',
         height: 50,
         borderRadius:100,
+        margin:10,
       },
       perfil:{
         width:130,
         height:130,
         margin:20,
         borderRadius:100,
+        boxShadow:(1,2,10,19),
         shadowColor: '#000',
-        shadowOffset: { width: 3, height: 6 },
+        shadowOffset: { width: 3, height: 9},
         shadowOpacity: 0.45,
         shadowRadius: 11.84,
       },
@@ -134,9 +143,11 @@ const Perfil =  () =>{
       },
   
       textoOpcao:{
-        fontSize:17,
+        fontSize:16,
         color:'#fff',
         marginLeft:10,
+        fontFamily:'Montserrat',
+
       },
     
       

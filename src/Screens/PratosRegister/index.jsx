@@ -92,7 +92,7 @@ function PratoRegister() {
       height: '80%',
       paddingVertical: 0
     }}>
-      <TouchableOpacity 
+      {/* <TouchableOpacity 
         onPress={() => navigation.goBack()}
         style={{
             width: '100%',
@@ -110,11 +110,11 @@ function PratoRegister() {
             fontSize: 18,
             marginLeft: 20
         }}>Voltar</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <Text style={{
         color: 'white',
         fontFamily: 'Italianno-Regular',
-        fontSize: 42,
+        fontSize: 50,
       }}>YumYelp</Text>
       <Text style={{
         color: 'white',
