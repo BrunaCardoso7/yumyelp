@@ -63,7 +63,6 @@ function PratoRegister() {
         if (response.status === 200) {
           console.log('Requisição bem-sucedida!');
           Alert.alert('Success', 'Restaurante criado com sucesso!');
-          navigation.navigate('PratosView')
         } else {
           console.log('Status da resposta:', response.status);
           Alert.alert('Error', `Erro na criação do restaurante: ${response.status}`);
@@ -157,11 +156,11 @@ function PratoRegister() {
                     color: 'white',
                     fontFamily: 'Montserrat-Light',
                     fontSize: 14,
-                  }}>Nome do Prato</Text>
+                  }}>Nome do Restaurante</Text>
 
               </View>
               <TextInput 
-                placeholder="Nome do Prato"
+                placeholder="Nome do restaurante"
                 style={{
                     height: 50,
                     fontSize: 16,
@@ -202,7 +201,7 @@ function PratoRegister() {
             </View>
             </View>
             <TouchableOpacity style={{
-                backgroundColor: '#C61515',
+                backgroundColor: '#681A1A',
                 width: '90%',
                 alignItems: 'center',
                 borderRadius: 14,

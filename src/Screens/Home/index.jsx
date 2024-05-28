@@ -12,7 +12,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import SectionList from './Components/ListCard/index';
 import FlatList from './Components/Slide/index';
 import Header from '../../Components/Header/index'
-
     
 const Home = () => {
       

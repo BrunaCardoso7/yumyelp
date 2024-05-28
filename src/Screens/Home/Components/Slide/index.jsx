@@ -132,15 +132,15 @@ const Slide = ({item}) => {
             <Image style={styles.image1} source={uri1}/>
                 <View style={styles.overlay}></View>
                 <View style={styles.minibox}>
-                <Image style={styles.image2} source={uri2}/>
-                <View style={styles.descricao}>
-                    <Text style={styles.titleInfo}>{item.title}</Text>
-                    <Text style={styles.textdesc}>{item.desc}</Text>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.redirect}>Saiba Mais</Text>
-                    </TouchableOpacity>
+                    <Image style={styles.image2} source={uri2}/>
+                    <View style={styles.descricao}>
+                        <Text style={styles.titleInfo}>{item.title}</Text>
+                        <Text style={styles.textdesc}>{item.desc}</Text>
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.redirect}>Saiba Mais</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
         </View>
     )
 }
@@ -151,81 +151,81 @@ const Slide = ({item}) => {
 const styles=StyleSheet.create({
     info:{
         flex:1,
-            width: Dimensions.get("window").width,
-            height:230,
-        },
-        overlay:{
-            ...StyleSheet.absoluteFillObject,
-            backgroundColor: 'rgba(0, 0, 0, 0.65)',
-        },
-        image1:{
-            resizeMode:'cover',
-            width:'100%',
-            height:'100%',
-        },
-        indicador:{
-            width:10,
-            height:10,
-            borderRadius:5,
-            backgroundColor:'rgba(192,192,192,0.4)',
-        },
-        indicadorS:{
-            width:12,
-            height:12,
-            borderRadius:7,
-            backgroundColor:'rgba(255,0,0,0.4)',
-        },
-        indicadorMove:{
-            gap:3,
-            marginRight:10,
-            bottom:20,
-            flexDirection:'row',
-            justifyContent:'flex-end',
-        },
-        minibox:{
-            top:'15%',
-            left:30,
-            flexDirection:'row',
-            position:'absolute',
-        },
-    
-        image2:{
-            width:122,
-            height:146,
-            borderRadius:15,
-            marginTop:10,
-            resizeMode:'cover',
-        },
-    
-        descricao:{
-            width:'66%',
-            height:'100%',
-            paddingLeft:10,
-        },
-        titleInfo:{
-            fontSize:38,
-            color:'#fff',
-            fontFamily:'InriaSerif'
-        },
+        width: Dimensions.get("window").width,
+        height:220,
+    },
+    overlay:{
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0, 0, 0, 0.65)',
+    },
+    image1:{
+        resizeMode:'cover',
+        width:'100%',
+        height:'100%',
+    },
+    indicador:{
+        width:10,
+        height:10,
+        borderRadius:5,
+        backgroundColor:'rgba(192,192,192,0.4)',
+    },
+    indicadorS:{
+        width:12,
+        height:12,
+        borderRadius:7,
+        backgroundColor:'rgba(255,0,0,0.4)',
+    },
+    indicadorMove:{
+        gap:3,
+        marginRight:10,
+        bottom:20,
+        flexDirection:'row',
+        justifyContent:'flex-end',
+    },
+    minibox:{
+        top:'15%',
+        left:30,
+        flexDirection:'row',
+        position:'absolute',
+    },
 
-        textdesc:{
-            flexWrap:'wrap',
-            color:'#fff',
-            fontFamily:'Montserrat',
-        },
-        
-        button:{
-            width:142,
-            height:33,
-            marginLeft:30,
-            marginTop:10,
-            borderRadius:20,
-            backgroundColor:'#7D2121',
-            justifyContent:'center',
-            alignItems:'center',
-        
-        },
-        redirect:{
-            color:'#fff'
-        },
+    image2:{
+        width:122,
+        height:146,
+        borderRadius:15,
+        marginTop:10,
+        resizeMode:'cover',
+    },
+
+    descricao:{
+        width:'66%',
+        height:'100%',
+        paddingLeft:10,
+    },
+    titleInfo:{
+        fontSize:34,
+        color:'#fff',
+        fontFamily:'InriaSerif'
+    },
+
+    textdesc:{
+        flexWrap:'wrap',
+        color:'#fff',
+        fontFamily:'Montserrat',
+    },
+    
+    button:{
+        width:142,
+        height:33,
+        marginLeft:30,
+        marginTop:10,
+        borderRadius:20,
+        backgroundColor:'#7D2121',
+        justifyContent:'center',
+        alignItems:'center',
+    
+    },
+    redirect:{
+        color:'#fff'
+    },
 })

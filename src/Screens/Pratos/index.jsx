@@ -1,10 +1,10 @@
-import React, { useEffect, useState,useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, TouchableOpacity, FlatList, Image } from "react-native";
-import { getAllProdutos, getRest } from "../../api";
+import { getAllProdutos } from "../../api";
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import * as SplashScreen from 'expo-splash-screen';
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function Prato({ item }) {
@@ -45,27 +45,11 @@ function PratosView() {
   
     const getPratos = async () => {
       try {
-        const user_id = await AsyncStorage.getItem("user_id")
-
-        const restaurante = await getRest(user_id)
-
-        console.log(restaurante.data.restInfo.id)
-
-        const rest_id = restaurante.data.restInfo.id
-
-        await AsyncStorage.setItem("rest_id", rest_id)
-
-        const produto = await getAllProdutos();
-        setData(produto.produtos)
-
-        const produtos = produto.produtos
-        const produtoArray = Object.values(produtos)
-        const filteredProdutos = produtoArray.filter((produto) => produto.rest_id === rest_id);
-
-        console.log(filteredProdutos)
-
-        setData(filteredProdutos)
-        
+        const rest_id = await AsyncStorage.getItem("rest_id")
+        const produtos = await getAllProdutos();
+        console.log(rest_id)
+          setData(produtos.produtos)
+      
       } catch (error) {
         console.error(error);
       }
@@ -81,15 +65,13 @@ function PratosView() {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
-  
+
   if (!fontsLoaded && !fontError) {
     return null;
   }
-  useFocusEffect(
-    useCallback(() => {
-      getPratos();
-    }, [])
-  );
+  useEffect(()=>{
+    getPratos()
+  }, [])
   console.log(data)
   return (
     <View onLayout={onLayoutRootView} style={{ backgroundColor: '#1F1C1C', flex: 1, alignItems: 'center', width: '100%', height: '80%', paddingVertical: 20, gap: 32 }}>
@@ -98,7 +80,6 @@ function PratosView() {
           flex:1,
           alignItems: 'center',
           justifyContent: 'space-around',
-          flexDirection: 'row',
           width: '100%',
           height: '80%',
           paddingVertical: 0
@@ -106,31 +87,17 @@ function PratosView() {
           <TouchableOpacity 
           onPress={logOut}
             style={{
-              position: 'absolute',
-              top:0,
-              left: 14,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center'
-              
-            }}
-        >
-          <AntDesign name="logout" size={24} color="white" />
-          </TouchableOpacity>
-            <TouchableOpacity style={{
+                // width: '100%',
                 position: 'absolute',
                 top:0,
                 right: 14,
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center'
-            }}>
-              <Image style={{
-                width: 40,
-                height: 40,
-                borderRadius: 100,
-              }} source={require('../../../assets/user-profile.jpg')}/>
-            </TouchableOpacity>
+            }}
+        >
+          <AntDesign name="logout" size={24} color="white" />
+          </TouchableOpacity>
         </View>
       <View style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
         <Text style={{ color: 'white', fontFamily: 'Italianno-Regular', fontSize: 45 }}>YumYelp</Text>

@@ -105,27 +105,27 @@ function MyTabs() {
       />
 
         <Tab.Screen
-          name='Notificacao'
-          component={Notificacao}
-          options={{
-            tabBarButton: () => null ,
-            headerShown:false,
-            tabBarStyle:{
-              display:'none'
-            }
-          }}
+      name='Notificacao'
+      component={Notificacao}
+               options={{
+               tabBarButton: () => null ,
+               headerShown:false,
+               tabBarStyle:{
+                 display:'none'
+               }
+                             }}
       />
 
       <Tab.Screen
-        name='Icones'
-        component={Icones}
-        options={{
-          tabBarButton: () => null ,
-          headerShown:false,
-          tabBarStyle:{
-            display:'none'
-          }
-        }}
+      name='Icones'
+      component={Icones}
+            options={{
+               tabBarButton: () => null ,
+               headerShown:false,
+               tabBarStyle:{
+                 display:'none'
+               }
+            }}
       />
     </Tab.Navigator>
   );

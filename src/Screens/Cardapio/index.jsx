@@ -1,145 +1,53 @@
 import {View, Image,StyleSheet, Text, ScrollView, TextInput, Dimensions, FlatList} from 'react-native'
-import {useEffect, useState} from 'react'; 
+import { useCallback, useEffect, useState} from 'react'; 
+import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { AntDesign } from '@expo/vector-icons';
 import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
+// import { FlatList } from 'react-native-gesture-handler';
+import { produtoData } from '../../mocks/produto-mock';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Header from '../../Components/Header';
-import { getAllProdutos } from '../../api';
-
 
 const screenWidth = Dimensions.get('window').width;
 
 SplashScreen.preventAutoHideAsync();
 
-function Produto ({imagem, nome, preco}) {
+function Produto ({uri, preco}) {
   return (
     <>
         <View style={styles.conteinerProduct}>
-          <Image  style={{
-            width: 120,
-            height: 120,
-            borderRadius: 14
-          }} source={{uri: imagem}}/>
-          <Text style={styles.nomeProd}>{nome}</Text>
+          <Image source={require('../../../assets/Rectangle 8.png')}/>
           <Text style={styles.moneyStyle}>{preco}</Text>
         </View>
     </>
 
   )
 }
-function Comenter ({nome, comentario}) {
-  return (
-    <>
-      <View style={styles.bubbleComent}>
-        <View style={{
-          display: 'flex',
-          flexDirection: 'collumn',
-          justifyContent: 'space-between',
-          gap: 14,
-          paddingHorizontal: 12
-        }}>
-          <View style={styles.conteinerStar}>
-            <AntDesign name="star" size={20} color="yellow" />
-            <AntDesign name="star" size={20} color="yellow" />
-            <AntDesign name="star" size={20} color="yellow" />
-            <AntDesign name="star" size={20} color="yellow" />
-            <AntDesign name="staro" size={20} color="yellow" />
-          </View>
-          <View style={{
-            flexDirection: 'row',
-            gap: 24
-          }}>
-            <View style={styles.profileImage}>
-              <Text>oi</Text>
-            </View>
-            <View>
-              <Text style={{
-                color: 'white',
-                fontSize: 14,
-                fontFamily: 'Montserrat-SemiBold'
-              }}>
-                  {nome}
-              </Text>
-            </View>
-          </View>
-      </View>
-          <View style={styles.comenter}>
-            <Text style={{
-              color: 'white',
-              paddingHorizontal: 14,
-            }}>
-              {comentario}
-            </Text>
-          </View>
-      </View>
-    </>
-  )
-}
-
-const datas = [
-  { id: 1, nome: "Ana Lucia Cristal", comentario: "Ótimo atendimento e comida deliciosa!" },
-  { id: 2,nome: "Bruno Silva", comentario: "Ambiente agradável, recomendo a visita." },
-  { id: 3,nome: "Carla Santos", comentario: "Pratos bem servidos, mas o serviço foi lento." },
-  { id: 4,nome: "Daniel Oliveira", comentario: "Adorei a variedade do cardápio." },
-  { id: 5,nome: "Eduarda Pereira", comentario: "O restaurante estava lotado, mas valeu a espera." },
-  { id: 6,nome: "Fernando Souza", comentario: "Preço justo e comida de qualidade." },
-  { id: 7,nome: "Gabriela Lima", comentario: "Melhor sobremesa que já provei!" },
-  { id: 8,nome: "Henrique Costa", comentario: "Boa localização, mas achei o atendimento mediano." },
-  { id: 9,nome: "Isabela Ribeiro", comentario: "Ótimo para ir com a família, espaço kids é excelente." },
-  { id: 10,nome: "João Pedro Almeida", comentario: "Sabor autêntico e ingredientes frescos." }
-];
-
 
 function Cardapio ({ route }) {
 
     const { data } = route.params;
     const [inputValue, setInputValue] = useState('')
-    const [infoApi, setInfoApi] = useState()
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
-    const rest_id = data.id
-
-    const handleData = async() => {
-      try {
-        const result = await getAllProdutos()
-          console.log(result.produtos)
-        const produtos = Object.values(result.produtos)
-        const filteredProdutos = produtos.filter((produto) => produto.rest_id === rest_id)
-
-        setInfoApi(filteredProdutos)
-      } catch (error) {
-          console.error(error)
-      }
-    }
 
     useEffect(() => {
       onLayoutRootView(); 
     }, [onLayoutRootView]);
-    useEffect(()=>{
-      handleData()
-    }, [])
   
     if (!fontsLoaded && !fontError) {
       return null;
     }
 
     
-    console.log("info api: ",infoApi)
+
     return (
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Header/>
         <ScrollView onLayout={onLayoutRootView} >
-            <View style={styles.imageStyle}>
-              <Image style={styles.imageStyle} source={{uri: data.imagem}}/>  
-              <Text style={{
-                zIndex: 999,
-                position: 'absolute',
-                bottom:0,
-                right: 10,
-                fontSize:24,
-                color: 'white'
-              }}><AntDesign name="star" size={24} color="yellow" />4.1</Text>
-              <View style={styles.overlay} />
+          <View style={styles.fundoImg}>
+            <Image style={styles.imageStyle} source={{uri: data.imagem}}/>
+            <View style={styles.overlay}></View>
             </View>
             <View style={styles.conteinerInfo}>
               <View style={styles.conteiner}>
@@ -166,8 +74,8 @@ function Cardapio ({ route }) {
                   <ScrollView>
                     <FlatList 
                       horizontal
-                      data={infoApi}
-                      renderItem={({item}) => <Produto imagem={item.imagem} nome={item.nome} preco={item.preco}/>}
+                      data={produtoData}
+                      renderItem={({item}) => <Produto uri={item.uri} preco={item.preco}/>}
                       keyExtractor={item => item.id}
                     />
                   </ScrollView>
@@ -178,12 +86,12 @@ function Cardapio ({ route }) {
                   Redes Sociais
                 </Text>
                 <Text style={styles.textSubTitle}>
-                  Instagram: @RestaurantesBrasil
+                 nenhum cadastrado!
                 </Text>
               </View>
               <View style={styles.conteinerAva}>
         
-                <Text style={styles.textTilte}>
+                <Text style={styles.textTiltePrimary}>
                   Avaliar esse restaurante
                 </Text>
                 <View style={styles.conteinerStar}>
@@ -199,18 +107,31 @@ function Cardapio ({ route }) {
                   placeholder='Qual a sua opinião'
                   onChangeText={setInputValue}
                 />
-                  <FlatList 
-                    horizontal
-                    style={{
-                      width: '100%',
-                      height: '12%',
-                      // padding:10,
-                      marginVertical: 50
-                    }}
-                    data={datas}
-                    renderItem={({item}) => <Comenter nome={item.nome} comentario={item.comentario} />}
-                    keyExtractor={item => item.id}
-                  />
+              </View>
+              <View style={styles.bubbleComent}>
+                <View style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
+                }}>
+                  <View style={styles.profileImage}>
+                    <Text>oi</Text>
+                  </View>
+
+                  <View style={styles.conteinerStar}>
+                    <AntDesign name="staro" size={20} color="yellow" />
+                    <AntDesign name="staro" size={20} color="yellow" />
+                    <AntDesign name="staro" size={20} color="yellow" />
+                    <AntDesign name="staro" size={20} color="yellow" />
+                    <AntDesign name="staro" size={20} color="yellow" />
+                  </View>
+
+              </View>
+                  <View style={styles.comenter}>
+                    <Text>
+                      não sei se gostei da comida e achei um fio de cabelo na minha comida
+                    </Text>
+                  </View>
               </View>
             </View>
         </ScrollView>
@@ -218,21 +139,19 @@ function Cardapio ({ route }) {
     )
 }
 
-
 const styles = StyleSheet.create({
     conteinerMain: {
         width: '100%',
         flex: 1,
-        marginVertical: 50
     },
     fundoImg:{
       width:'100%',
       height:231,
     },
     imageStyle:{
-        position: 'relative',
-        width: screenWidth,
-        height: 230,
+        width: '100%',
+        height: '100%',
+        resizeMode:'cover',
     },
     
     overlay:{
@@ -244,7 +163,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1F1C1C',
         height: '100%',
         padding: 14,
-        gap:  24,
+        gap:  28,
     },
     textTitle: {
       fontFamily: 'Montserrat-SemiBold',
@@ -254,21 +173,15 @@ const styles = StyleSheet.create({
     textSubTitle: {
       fontFamily: 'Montserrat-Regular',
       color: '#ffffff',
-      fontSize: 14,
-      textAlign: 'justify'
+      fontSize: 16,
     },
     textTiltePrimary: {
       fontFamily: 'Montserrat-SemiBold',
       color: '#ffffff',
       fontSize: 14,
     },
-    textTilte: {
-      fontFamily: 'Montserrat-SemiBold',
-      color: '#ffffff',
-      fontSize: 14,
-    },
     conteiner: {
-      gap: 24,
+      gap: 6,
     },
     conteinerProduct:{
       display: 'flex',
@@ -278,12 +191,7 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
     },
     moneyStyle: {
-      color: '#D9D9D9',
-      fontFamily: 'InriaSerif-Bold'
-    },
-    nomeProd: {
-      color: '#D9D9D9',
-      fontFamily: 'Montserrat-SemiBold'
+      color: '#00FF38',
     },
     products: {
       display: 'flex',
@@ -309,18 +217,12 @@ const styles = StyleSheet.create({
       borderRadius: 6,
     },
     bubbleComent: {
-      backgroundColor: "#3F3838",
-      width: 350,
-      height: '100%',
+      backgroundColor: "white",
+      width: '100%',
+      height: 'fit-content',
       gap: 8,
       borderRadius: 24,
       padding: 10,
-      shadowColor: '#000', 
-      shadowOffset: { width: 0, height: 2 }, 
-      shadowOpacity: 0.1, 
-      shadowRadius: 4, 
-      elevation: 5, 
-      marginRight: 10
     },
     profileImage: {
       width: 40,
@@ -335,15 +237,7 @@ const styles = StyleSheet.create({
       width: 80,
       height: 80,
       backgroundColor: 'white',
-    },
-    overlay: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    },
+    }
 })
 
 export default Cardapio
