@@ -26,6 +26,7 @@ function Produto ({uri, preco}) {
 }
 
 function Cardapio ({ route }) {
+
     const { data } = route.params;
     const [inputValue, setInputValue] = useState('')
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
@@ -44,7 +45,10 @@ function Cardapio ({ route }) {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Header/>
         <ScrollView onLayout={onLayoutRootView} >
+          <View style={styles.fundoImg}>
             <Image style={styles.imageStyle} source={{uri: data.imagem}}/>
+            <View style={styles.overlay}></View>
+            </View>
             <View style={styles.conteinerInfo}>
               <View style={styles.conteiner}>
                 <Text style={styles.textTitle}>
@@ -113,6 +117,7 @@ function Cardapio ({ route }) {
                   <View style={styles.profileImage}>
                     <Text>oi</Text>
                   </View>
+
                   <View style={styles.conteinerStar}>
                     <AntDesign name="staro" size={20} color="yellow" />
                     <AntDesign name="staro" size={20} color="yellow" />
@@ -120,6 +125,7 @@ function Cardapio ({ route }) {
                     <AntDesign name="staro" size={20} color="yellow" />
                     <AntDesign name="staro" size={20} color="yellow" />
                   </View>
+
               </View>
                   <View style={styles.comenter}>
                     <Text>
@@ -138,10 +144,21 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
     },
-    imageStyle:{
-        width: screenWidth,
-        height: 230,
+    fundoImg:{
+      width:'100%',
+      height:231,
     },
+    imageStyle:{
+        width: '100%',
+        height: '100%',
+        resizeMode:'cover',
+    },
+    
+    overlay:{
+      ...StyleSheet.absoluteFillObject,
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+      },
+
     conteinerInfo:{
         backgroundColor: '#1F1C1C',
         height: '100%',
@@ -149,7 +166,7 @@ const styles = StyleSheet.create({
         gap:  28,
     },
     textTitle: {
-      fontFamily: 'Montserrat-Regular',
+      fontFamily: 'Montserrat-SemiBold',
       color: '#ffffff',
       fontSize: 22,
     },

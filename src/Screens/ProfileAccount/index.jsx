@@ -63,7 +63,7 @@ import {
                                  <FontAwesome5 name="edit" size={20} color="white" />
                             </TouchableOpacity>         
                         </View>
-                           <Text style={styles.letras2}>fãdaInesBrasil@gmail.com</Text>
+                           <Text style={styles.letras2}>leonzinhooficiall@gmail.com</Text>
                     </View>
     
                     <View  style={styles.infos}>

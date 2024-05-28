@@ -37,7 +37,7 @@ const Header = () =>{
         <Text style={{
             color: 'white',
             fontFamily: 'Italianno-Regular',
-            fontSize: 42,
+            fontSize: 48,
         }}>YumYelp</Text>
       </TouchableOpacity>
     </View>

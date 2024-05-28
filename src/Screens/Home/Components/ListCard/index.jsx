@@ -15,11 +15,6 @@ import { getById, getRestaurantes } from '../../../../api'
 import { useNavigation } from '@react-navigation/native';
 
 
-export const imageSources = {
-  image1: require('../../../../../assets/images/imagesRestaurantes/rest2.jpg'),
-  image2: require('../../../../../assets/images/imagesRestaurantes/rest3.jpg'),
-};
-
 const ListItem = ({ item }) => {
   const { onLayoutRootView, fontsLoaded, fontError } = UseFontsCostumize();
   const navigation = useNavigation()
