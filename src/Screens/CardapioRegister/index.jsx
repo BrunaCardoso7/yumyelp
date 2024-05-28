@@ -15,6 +15,7 @@ function CardapioRegister () {
     const [nome, setNome] = useState('');
     const [endereco, setEndereco] = useState('');
     const [descricao, setDescricao] = useState('');
+    const [categoria, setCategoria] = useState('')
     const [image, setImage] = useState(null);
     const navigation = useNavigation()
 
@@ -47,10 +48,11 @@ function CardapioRegister () {
 
       const userId = await AsyncStorage.getItem("userId")
   
-      const formData = new FormData();
-      formData.append("nome", nome);
-      formData.append("endereco", endereco);
-      formData.append("descricao", descricao);
+      const formData = new FormData()
+      formData.append("nome", nome)
+      formData.append("endereco", endereco)
+      formData.append("descricao", descricao)
+      formData.append("categoria", categoria)
       formData.append("file", {
         uri: image.uri,
         type: image.type,
@@ -58,15 +60,15 @@ function CardapioRegister () {
       });
   
       try {
-        const response = await createRestaurante(formData, userId);
+        const response = await createRestaurante(formData, userId)
         
-        console.log('Response:', response);
+        console.log('Response:', response)
         if (response.status === 200) {
-          console.log('Requisição bem-sucedida!');
-          Alert.alert('Success', 'Restaurante criado com sucesso!');
+          console.log('Requisição bem-sucedida!')
+          Alert.alert('Success', 'Restaurante criado com sucesso!')
         } else {
-          console.log('Status da resposta:', response.status);
-          Alert.alert('Error', `Erro na criação do restaurante: ${response.status}`);
+          console.log('Status da resposta:', response.status)
+          Alert.alert('Error', `Erro na criação do restaurante: ${response.status}`)
         }
 
         console.log(response.data.retaurante.id)
@@ -76,7 +78,7 @@ function CardapioRegister () {
       } catch (error) {
         console.error('Error during API call:', error);
       }
-    }, [nome, endereco, descricao, image]);
+    }, [nome, endereco, categoria,descricao, image]);
  
     useEffect(() => {
       onLayoutRootView(); 
@@ -159,7 +161,32 @@ function CardapioRegister () {
                     onChangeText={setNome}
                   />
                 </View>
-              
+                <View style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                }}>
+                  <View style={{width: '90%'}}>
+                      <Text style={{
+                        color: 'white',
+                        fontFamily: 'Montserrat-Light',
+                        fontSize: 14,
+                      }}>Categoria</Text>
+                  </View>
+                  <TextInput 
+                    placeholder="Categoria"
+                    style={{
+                        height: 50,
+                        fontSize: 16,
+                        width: '90%',
+                        backgroundColor: 'white',
+                        padding: 8,
+                        borderRadius:14,
+                    }}
+                    onChangeText={setCategoria}
+                  />
+                </View>
                 <View style={{
                   width: '100%',
                   display: 'flex',

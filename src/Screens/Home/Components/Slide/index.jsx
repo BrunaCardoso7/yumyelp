@@ -203,15 +203,16 @@ const styles=StyleSheet.create({
             paddingLeft:10,
         },
         titleInfo:{
-            fontSize:38,
+            fontSize:30,
             color:'#fff',
             fontFamily:'InriaSerif'
         },
-
         textdesc:{
             flexWrap:'wrap',
             color:'#fff',
             fontFamily:'Montserrat',
+            fontSize: 12,
+            textAlign: 'justify'
         },
         
         button:{

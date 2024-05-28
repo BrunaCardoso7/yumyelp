@@ -31,11 +31,11 @@ const Perfil =  () =>{
     return(
       <View style={styles.container}>
             <Header/>
+            
             <TouchableOpacity style={styles.fundoGear} onPress={gear}>
                 <FontAwesome5 style={styles.gear} name="cog" size={25} color="white" />
             </TouchableOpacity>
             <View style={styles.infos}>
-
                 <View style={styles.perfil}>
                    <Image style={styles.imagePerfil} source={require('../../../assets/images/imagesIcons/dgsgt03-7da011d4-e515-4664-ae67-6d4a498917d3.jpg')}/>
                 </View>

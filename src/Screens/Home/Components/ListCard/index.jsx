@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useCallback, useEffect, useState } from 'react'; 
 import { UseFontsCostumize } from '../../../../hooks/useFontsCustomize';
+import * as SplashScreen from 'expo-splash-screen';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getById, getRestaurantes } from '../../../../api'
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
@@ -57,6 +58,8 @@ const ListItem = ({ item }) => {
 
 export default () => {
   const [data, setData] = useState([]);
+  const { onLayoutRootView, fontsLoaded, fontError } = UseFontsCostumize();
+
 
   async function getData() {
     try {
@@ -83,6 +86,11 @@ export default () => {
       data: categories[category]
     }));
   }
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
 
   useFocusEffect(
     useCallback(() => {

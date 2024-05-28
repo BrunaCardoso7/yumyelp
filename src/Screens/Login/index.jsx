@@ -103,10 +103,10 @@ const Login = () => {
 
                     <View style={styles.icones}>
                         <TouchableOpacity>
-                            <FontAwesome5 name="google-plus" size={38} color="white" />
+                            <FontAwesome5 onPress={()=> navigation.navigate('Home')} name="google-plus" size={38} color="white" />
                         </TouchableOpacity>
                         <TouchableOpacity>
-                            <FontAwesome5 name="facebook" size={38} color="white" />
+                            <FontAwesome5 onPress={() => navigation.navigate('Home')} name="facebook" size={38} color="white" />
                         </TouchableOpacity>
                     </View>
                 </View>

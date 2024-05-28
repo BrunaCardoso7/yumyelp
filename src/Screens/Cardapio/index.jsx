@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     imageStyle:{
         position: 'relative',
         width: screenWidth,
-        height: 230,
+        height: 231,
     },
     
     overlay:{
