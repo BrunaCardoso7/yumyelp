@@ -97,6 +97,25 @@ function CardapioRegister () {
           height: '80%',
           paddingVertical: 0
         }}>
+          {/* <TouchableOpacity 
+            onPress={() => navigation.navigate('Continue')}
+            style={{
+                width: '100%',
+                position: 'absolute',
+                top:28,
+                left: 8,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center'
+            }}
+        >
+            <AntDesign name="left" size={24} color="white" />
+            <Text style={{
+                color: 'white',
+                fontSize: 18,
+                marginLeft: 20
+            }}>Voltar</Text>
+          </TouchableOpacity> */}
           <Text style={{
             color: 'white',
             fontFamily: 'Italianno-Regular',

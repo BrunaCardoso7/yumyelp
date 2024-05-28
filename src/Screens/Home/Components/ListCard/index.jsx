@@ -8,11 +8,12 @@ import {
   FlatList,
   TouchableOpacity  
 } from 'react-native';
-import { useCallback, useEffect, useState } from 'react'; 
+import { useEffect, useState } from 'react'; 
 import { UseFontsCostumize } from '../../../../hooks/useFontsCustomize';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getById, getRestaurantes } from '../../../../api'
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
+
 
 const ListItem = ({ item }) => {
   const { onLayoutRootView, fontsLoaded, fontError } = UseFontsCostumize();
@@ -84,11 +85,10 @@ export default () => {
     }));
   }
 
-  useFocusEffect(
-    useCallback(() => {
-      getData();
-    }, [])
-  );
+  useEffect(() => {
+    getData();
+  }, []);
+
   console.log("dados fora do estado: ", data);
 
   return (

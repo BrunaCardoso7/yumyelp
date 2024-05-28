@@ -32,6 +32,25 @@ function ContinueWith () {
     return (
         <DimissKeyBoard>
             <View style={style.screenConteiner}>
+            {/* <TouchableOpacity 
+                        onPress={() => navigation.goBack()}
+                        style={{
+                            width: '100%',
+                            position: 'absolute',
+                            top: 18,
+                            left: 18,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}
+                    >
+                        <AntDesign name="left" size={24} color="white" />
+                        <Text style={{
+                            color: 'white',
+                            fontSize: 18,
+                            marginLeft: 20
+                        }}>Voltar</Text>
+                    </TouchableOpacity> */}
             <Text style={style.titleLogo}>YumYelp</Text>
             <View style={style.buttonsConteiner}>
                 <View style={style.conteinerFormContent}>
