@@ -43,9 +43,9 @@ The following tools were used in this project:
 
 <p align="center">
  <h2 align="center">
-  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004123.png" width="100"/>
-  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004421.png" width="100"/>
-  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004431.png" width="100"/>
+  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004123.png" width="150"/>
+  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004421.png" width="150"/>
+  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004431.png" width="150"/>
  <h2>
 
   <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/yumyelp?color=56BEB8" /> -->
@@ -54,10 +54,10 @@ The following tools were used in this project:
 </p>
 <p align="center">
   <h2 align="center">
-  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004018.png" width="100"/>
-  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-003957.png" width="100"/>
-   <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004023.png" width="100"/>
-   <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004109.png" width="100"/>
+  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004018.png" width="150"/>
+  <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-003957.png" width="150"/>
+   <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004023.png" width="150"/>
+   <img alt="Github issues" src="./assets/imagesReadMe/Screenshot_20240530-004109.png" width="150"/>
   </h2>
   <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/yumyelp?color=56BEB8" /> -->
 
