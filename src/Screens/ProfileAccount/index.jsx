@@ -8,7 +8,7 @@ import {
     import { UseFontsCostumize } from '../../hooks/useFontsCustomize';
     import {useEffect} from 'react'; 
     import { useNavigation } from '@react-navigation/native';
-    
+    import AntDesign from '@expo/vector-icons/AntDesign';
     const Conta = () => {
       const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize();
       const navigation = useNavigation();
@@ -31,13 +31,13 @@ import {
     
       return(
         <View onLayout={onLayoutRootView} style={styles.container}>
+               
+               <TouchableOpacity style={styles.retornar} onPress={Return}>
+              <AntDesign name="doubleleft" size={38} color="white" />
+              <Text style={{color:"#fff",fontSize:15,marginLeft:5}}>Voltar</Text>
+            </TouchableOpacity>
 
-                <Text style={styles.nomePerfil}>Leonzinho</Text>
-                <View style={styles.localGear}>
-                    <TouchableOpacity style={styles.fundoGear}>
-                      <FontAwesome5 name="cog" size={25} color="white" />
-                    </TouchableOpacity>
-                </View>
+            <Text style={styles.nomePerfil}>Leonzinho</Text>
             <View style={styles.selectIcon}>
                 <TouchableOpacity style={styles.iconConta} onPress={IconEdit}>
                     <FontAwesome5 name="image" size={28} color="black" />

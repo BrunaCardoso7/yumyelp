@@ -40,7 +40,7 @@ const Perfil =  () =>{
                    <Image style={styles.imagePerfil} source={require('../../../assets/images/imagesIcons/dgsgt03-7da011d4-e515-4664-ae67-6d4a498917d3.jpg')}/>
                 </View>
 
-                <Text style={styles.nomePerfil} >Leozin das panela</Text>
+                <Text style={styles.nomePerfil} >Leonzinho</Text>
             </View>
              <View style={styles.opcoesPerfil}>
                 <TouchableOpacity style={styles.primeiraOpcao}>

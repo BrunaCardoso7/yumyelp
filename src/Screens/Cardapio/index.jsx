@@ -94,6 +94,7 @@ const datas = [
 function Cardapio ({ route }) {
 
     const { data } = route.params;
+    
     const [inputValue, setInputValue] = useState('')
     const [infoApi, setInfoApi] = useState()
     const {onLayoutRootView, fontsLoaded, fontError} = UseFontsCostumize()
