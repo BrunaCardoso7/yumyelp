@@ -9,37 +9,12 @@
 <h1 align="center">Aplicativo de recomendação de restaurante com React Native</h1>
 
 
-<p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
-  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
-  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
-</p>
-
 <br>
 
 ## Sobre ##
 
 O Yumyelp é um aplicativo com o ituíto de conectar clientes á boas recomendações de restaurantes. Na aplicação conseguimos atender requisitos na visão do restaurante, que deseja compartilhar sua imagem e qualidade ao cliente tendo como principais funcionalidades o registro de seu restaurante e também registros dos principais pratos de cardápios. Já na parte do cliente ele terá acesso aos restaurantes registrados podendo analisar a melhor opção de restaurante para ir através de avalições deixadas por outros clientes. 
 
-## Implementações ##
-
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
-
-## :rocket: Technologies ##
-
-The following tools were used in this project:
-
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
 
 <p align="center">
  <h2 align="center">
@@ -103,6 +78,16 @@ $ yarn start
 
 # The server will initialize in the <http://localhost:3000>
 ```
+
+## Tecnologias ##
+
+
+
+- [Expo](https://expo.io/)
+- [Node.js](https://nodejs.org/en/)
+- [React](https://pt-br.reactjs.org/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ## :memo: License ##
 
