@@ -58,6 +58,9 @@ O Yumyelp é um aplicativo com o ituíto de conectar clientes á boas recomenda�
 
 <hr> -->
 ## :white_check_mark: Requirements ##
+<h1>Equipes: </h1>
+
+[![GitHub](https://img.shields.io/badge/Leonan-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LeonanAraudo)
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
